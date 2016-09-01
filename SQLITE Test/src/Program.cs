@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace SQLITE_Test
+namespace Data_Persistent
 {
     internal class Program
     {
+
         private static void Main(string[] args)
         {
+            /*
             try
             {
                 var cp = new DataStorage.ControlePecuarista();
@@ -45,7 +47,10 @@ namespace SQLITE_Test
                 Console.WriteLine(exception.ToString());
             }
 
+            */
             Console.Read();
         }
+
     }
+
 }

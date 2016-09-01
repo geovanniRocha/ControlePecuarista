@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Script.Serialization;
 
-namespace SQLITE_Test
+namespace Data_Persistent
 {
     //TODO REFACTOR EVERYTHING
     public static class DataStorage

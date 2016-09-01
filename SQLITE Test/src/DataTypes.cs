@@ -1,4 +1,4 @@
-﻿namespace SQLITE_Test
+﻿namespace Data_Persistent
 {
     public static class DataTypes
     {
