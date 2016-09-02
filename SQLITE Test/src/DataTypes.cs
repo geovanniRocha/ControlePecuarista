@@ -11,6 +11,17 @@
             public string descricao { get; set; }
             public int valor { get; set; }
 
+            public Maquinario(int id, string nome, string descricao, int valor)
+            {
+                this.id = id;
+                this.nome = nome;
+                this.descricao = descricao;
+                this.valor = valor;
+            }
+
+            public Maquinario()
+            {
+            }
         }
 
         public class Gastos
@@ -20,6 +31,20 @@
             public string descricao { get; set; }
             public int valor { get; set; }
             public string data { get; set; }
+
+
+            public Gastos()
+            {
+                
+            }
+            public Gastos(int id, string nome, string descricao, int valor, string data)
+            {
+                this.id = id;
+                this.nome = nome;
+                this.descricao = descricao;
+                this.valor = valor;
+                this.data = data;
+            }
         }
 
         public class Combustivel

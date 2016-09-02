@@ -15,19 +15,13 @@ namespace Data_Persistent
         {
             #region Vars
 
-            private readonly LinkedList<DataTypes.Maquinario> maquinarioList;
-            private readonly LinkedList<DataTypes.Gastos> gastoList;
-            private readonly LinkedList<DataTypes.Combustivel> combustivelList;
-            private readonly LinkedList<DataTypes.Pastagem> pastagemList;
-            private readonly LinkedList<DataTypes.TipoPastagem> tipoPastagemList;
-            private readonly LinkedList<DataTypes.UnidadeAnimal> unidadeAnimalList;
+            public List<DataTypes.Maquinario> maquinarioList;
+            public List<DataTypes.Gastos> gastoList;
+            public List<DataTypes.Combustivel> combustivelList;
+            public List<DataTypes.Pastagem> pastagemList;
+            public List<DataTypes.TipoPastagem> tipoPastagemList;
+            public List<DataTypes.UnidadeAnimal> unidadeAnimalList;
 
-            public DataTypes.Maquinario[] maquinarios;
-            public DataTypes.Gastos[] gastos;
-            public DataTypes.Combustivel[] combustivels;
-            public DataTypes.Pastagem[] pastagems;
-            public DataTypes.TipoPastagem[] tipoPastagens;
-            public DataTypes.UnidadeAnimal[] unidadeAnimals;
 
             #endregion Vars
 
@@ -35,36 +29,26 @@ namespace Data_Persistent
 
             public ControlePecuarista()
             {
-                maquinarioList = new LinkedList<DataTypes.Maquinario>();
-                gastoList = new LinkedList<DataTypes.Gastos>();
-                combustivelList = new LinkedList<DataTypes.Combustivel>();
-                pastagemList = new LinkedList<DataTypes.Pastagem>();
-                tipoPastagemList = new LinkedList<DataTypes.TipoPastagem>();
-                unidadeAnimalList = new LinkedList<DataTypes.UnidadeAnimal>();
+                maquinarioList = new List<DataTypes.Maquinario>();
+                gastoList = new List<DataTypes.Gastos>();
+                combustivelList = new List<DataTypes.Combustivel>();
+                pastagemList = new List<DataTypes.Pastagem>();
+                tipoPastagemList = new List<DataTypes.TipoPastagem>();
+                unidadeAnimalList = new List<DataTypes.UnidadeAnimal>();
             }
 
-            public void toJson()
-            {
-                maquinarios = maquinarioList.ToArray();
-                gastos = gastoList.ToArray();
-                combustivels = combustivelList.ToArray();
-                pastagems = pastagemList.ToArray();
-                tipoPastagens = tipoPastagemList.ToArray();
-                unidadeAnimals = unidadeAnimalList.ToArray();
-            }
-
+           
             #endregion Constructors and functions
 
             #region CRUD Maquinario
 
             public void insertMaquinario(DataTypes.Maquinario maquinario)
             {
-                maquinarioList.AddLast(maquinario);
+                maquinarioList.Add(maquinario);
             }
 
             public DataTypes.Maquinario findMaquinarioById(int id)
             {
-                maquinarios = maquinarioList.ToArray();
                 foreach (var maq in maquinarioList)
                     if (maq.id == id)
                         return maq;
@@ -75,11 +59,7 @@ namespace Data_Persistent
             //TODO, SO Not threadSafe this operation;
             public void replaceMaquinarioByID(DataTypes.Maquinario maquinario)
             {
-                for (var node = maquinarioList.First; node != maquinarioList.Last.Next; node = node.Next)
-                {
-                    if (node.Value.id == maquinario.id)
-                        node.Value = maquinario;
-                }
+               
             }
 
             #endregion CRUD Maquinario
@@ -88,7 +68,7 @@ namespace Data_Persistent
 
             public void insertGastos(DataTypes.Gastos gasto)
             {
-                gastoList.AddLast(gasto);
+                gastoList.Add(gasto);
             }
 
             public DataTypes.Gastos findGastoByID(int id)
@@ -110,7 +90,7 @@ namespace Data_Persistent
 
             public void insertCombustivel(DataTypes.Combustivel combustivel)
             {
-                combustivelList.AddLast(combustivel);
+                combustivelList.Add(combustivel);
             }
 
             public DataTypes.Combustivel findCombustivelByID(int id)
@@ -132,7 +112,7 @@ namespace Data_Persistent
 
             public void insertPastagem(DataTypes.Pastagem pastagem)
             {
-                pastagemList.AddLast(pastagem);
+                pastagemList.Add(pastagem);
             }
 
             public DataTypes.Pastagem findPastagemByID(int id)
@@ -154,7 +134,7 @@ namespace Data_Persistent
 
             public void insertTipoPastagem(DataTypes.TipoPastagem tipoPastagem)
             {
-                tipoPastagemList.AddLast(tipoPastagem);
+                tipoPastagemList.Add(tipoPastagem);
             }
 
             public DataTypes.TipoPastagem findTipoPastagemByID(int id)
@@ -176,7 +156,7 @@ namespace Data_Persistent
 
             public void insertUnidadeAnimal(DataTypes.UnidadeAnimal unidadeAnimal)
             {
-                unidadeAnimalList.AddLast(unidadeAnimal);
+                unidadeAnimalList.Add(unidadeAnimal);
             }
 
             public DataTypes.UnidadeAnimal findUnidadeNAnimalByID(int id)
@@ -219,7 +199,6 @@ namespace Data_Persistent
 
         public static string jsonSerialize(ControlePecuarista controlePecuarista)
         {
-            controlePecuarista.toJson();
             var temp = new JavaScriptSerializer();
             var b = temp.Serialize(controlePecuarista);
 

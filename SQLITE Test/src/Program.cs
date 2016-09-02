@@ -4,10 +4,8 @@ namespace Data_Persistent
 {
     internal class Program
     {
-
         private static void Main(string[] args)
         {
-            /*
             try
             {
                 var cp = new DataStorage.ControlePecuarista();
@@ -21,14 +19,12 @@ namespace Data_Persistent
                 };
                 cp.insertMaquinario(t);
 
-
                 t = new DataTypes.Maquinario
                 {
                     id = 2,
                     valor = 1000
                 };
                 cp.insertMaquinario(t);
-
 
                 var c = new DataTypes.Gastos
                 {
@@ -41,16 +37,15 @@ namespace Data_Persistent
                 var b = DataStorage.jsonSerialize(cp);
                 DataStorage.writeFile(b, "teste.txt");
                 Console.WriteLine(b);
+                Console.Read();
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.ToString());
+                Console.Read();
             }
 
-            */
             Console.Read();
         }
-
     }
-
 }
