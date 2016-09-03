@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web.Script.Serialization;
 
 namespace Data_Persistent
@@ -13,18 +12,6 @@ namespace Data_Persistent
 
         public class ControlePecuarista
         {
-            #region Vars
-
-            public List<DataTypes.Maquinario> maquinarioList;
-            public List<DataTypes.Gastos> gastoList;
-            public List<DataTypes.Combustivel> combustivelList;
-            public List<DataTypes.Pastagem> pastagemList;
-            public List<DataTypes.TipoPastagem> tipoPastagemList;
-            public List<DataTypes.UnidadeAnimal> unidadeAnimalList;
-
-
-            #endregion Vars
-
             #region Constructors and functions
 
             public ControlePecuarista()
@@ -37,8 +24,18 @@ namespace Data_Persistent
                 unidadeAnimalList = new List<DataTypes.UnidadeAnimal>();
             }
 
-           
             #endregion Constructors and functions
+
+            #region Vars
+
+            public List<DataTypes.Maquinario> maquinarioList;
+            public List<DataTypes.Gastos> gastoList;
+            public List<DataTypes.Combustivel> combustivelList;
+            public List<DataTypes.Pastagem> pastagemList;
+            public List<DataTypes.TipoPastagem> tipoPastagemList;
+            public List<DataTypes.UnidadeAnimal> unidadeAnimalList;
+
+            #endregion Vars
 
             #region CRUD Maquinario
 
@@ -59,7 +56,6 @@ namespace Data_Persistent
             //TODO, SO Not threadSafe this operation;
             public void replaceMaquinarioByID(DataTypes.Maquinario maquinario)
             {
-               
             }
 
             #endregion CRUD Maquinario

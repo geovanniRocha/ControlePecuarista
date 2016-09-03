@@ -6,11 +6,6 @@
 
         public class Maquinario
         {
-            public int id { get; set; }
-            public string nome { get; set; }
-            public string descricao { get; set; }
-            public int valor { get; set; }
-
             public Maquinario(int id, string nome, string descricao, int valor)
             {
                 this.id = id;
@@ -22,21 +17,24 @@
             public Maquinario()
             {
             }
-        }
 
-        public class Gastos
-        {
             public int id { get; set; }
             public string nome { get; set; }
             public string descricao { get; set; }
             public int valor { get; set; }
-            public string data { get; set; }
 
+            public override string ToString()
+            {
+                return $"{id}, {nome ?? "null"}, {descricao ?? "null"}, {valor}";
+            }
+        }
 
+        public class Gastos
+        {
             public Gastos()
             {
-                
             }
+
             public Gastos(int id, string nome, string descricao, int valor, string data)
             {
                 this.id = id;
@@ -44,6 +42,17 @@
                 this.descricao = descricao;
                 this.valor = valor;
                 this.data = data;
+            }
+
+            public int id { get; set; }
+            public string nome { get; set; }
+            public string descricao { get; set; }
+            public int valor { get; set; }
+            public string data { get; set; }
+
+            public override string ToString()
+            {
+                return $"{id}, {nome ?? "Null"}, {descricao ?? "Null"}, {valor}, {data ?? "Null"}";
             }
         }
 
