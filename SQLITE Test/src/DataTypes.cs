@@ -59,21 +59,64 @@
         public class Combustivel
         {
             public int id { get; set; }
+            public string nome { get; set; }
+
+            public Combustivel()
+            {
+                
+            }
+
+            public Combustivel(int id, string nome)
+            {
+                this.id = id;
+                this.nome = nome;
+            }
+
+            public override string ToString()
+            {
+                return $"{id}, {nome??"null"}";
+            }
         }
 
         public class Pastagem
         {
             public int id { get; set; }
+            public string nome { get; set; }
+
+            public Pastagem()
+            {
+                
+            }
+
+            public Pastagem(int id, string nome)
+            {
+                this.id = id;
+                this.nome = nome;
+            }
+
+            public Pastagem(int id)
+            {
+                this.id = id;
+                this.nome = "Pastagem " + id;
+            }
         }
 
         public class TipoPastagem
         {
             public int id { get; set; }
+            public string nome { get; set; }
+
+            public TipoPastagem(int id, string nome)
+            {
+                this.id = id;
+                this.nome = nome;
+            }
         }
 
         public class UnidadeAnimal
         {
             public int id { get; set; }
+            public string nome { get; set; }
         }
 
         #endregion Types

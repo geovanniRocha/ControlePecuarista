@@ -52,8 +52,7 @@ namespace Data_Persistent
                 return null;
             }
 
-            //TODO make a array, replace info and make another linkedlist, then replace, SHOULD be good, while not using thread
-            //TODO, SO Not threadSafe this operation;
+           
             public void replaceMaquinarioByID(DataTypes.Maquinario maquinario)
             {
             }
