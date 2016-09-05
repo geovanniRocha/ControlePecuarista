@@ -117,6 +117,12 @@
         {
             public int id { get; set; }
             public string nome { get; set; }
+
+            public UnidadeAnimal(int id, string nome)
+            {
+                this.id = id;
+                this.nome = nome;
+            }
         }
 
         #endregion Types

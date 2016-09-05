@@ -5,7 +5,7 @@ using System.Web.Script.Serialization;
 
 namespace Data_Persistent
 {
-    //TODO REFACTOR EVERYTHING
+    //TODO REFACTOR EVERYTHING, CHANGE TO XML?
     public static class DataStorage
     {
         #region Data

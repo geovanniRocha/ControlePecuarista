@@ -1,6 +1,5 @@
 ﻿using Data_Persistent;
 using System;
-using System.Runtime.Serialization.Json;
 using System.Windows.Forms;
 
 namespace ControlePecuarista
@@ -14,28 +13,27 @@ namespace ControlePecuarista
         private static void Main()
         {
             Debug.instace.log("");
+            var numberOfItens = 200;
             var cp = new DataStorage.ControlePecuarista();
+            for (var i = 0; i < numberOfItens; i++)
+                cp.insertGastos(new DataTypes.Gastos(cp.gastoList.Count, "Gasto " + i, null, 0, null));
 
-            cp.insertGastos(new DataTypes.Gastos(cp.gastoList.Count, "Um", null, 0, null));
-            cp.insertGastos(new DataTypes.Gastos(cp.gastoList.Count, "Quatro", null, 0, null));
-            cp.insertGastos(new DataTypes.Gastos(cp.gastoList.Count, "Cinco", null, 0, null));
+            for (var i = 0; i < numberOfItens; i++)
+                cp.insertMaquinario(new DataTypes.Maquinario(cp.maquinarioList.Count, "Maquina" + i, null, 0));
 
-            cp.insertMaquinario(new DataTypes.Maquinario(cp.maquinarioList.Count, "Maquina1", null, 0));
-            cp.insertMaquinario(new DataTypes.Maquinario(cp.maquinarioList.Count, "Maquina2", null, 0));
-            cp.insertMaquinario(new DataTypes.Maquinario(cp.maquinarioList.Count, "Maquina3", null, 0));
+            for (var i = 0; i < numberOfItens; i++)
+                cp.insertCombustivel(new DataTypes.Combustivel(cp.maquinarioList.Count, "Combustivel" + i));
 
-            cp.insertCombustivel(new DataTypes.Combustivel(cp.maquinarioList.Count, "Gasolina"));
-            cp.insertCombustivel(new DataTypes.Combustivel(cp.maquinarioList.Count, "Alcool"));
-            cp.insertCombustivel(new DataTypes.Combustivel(cp.maquinarioList.Count, "h2o"));
-
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < numberOfItens; i++)
                 cp.insertPastagem(new DataTypes.Pastagem(cp.pastagemList.Count));
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < numberOfItens; i++)
                 cp.insertTipoPastagem(new DataTypes.TipoPastagem(cp.tipoPastagemList.Count, "Grama"));
 
-            
+            for (var i = 0; i < numberOfItens; i++)
+                cp.insertUnidadeAnimal(new DataTypes.UnidadeAnimal(cp.unidadeAnimalList.Count, "UA " + i));
 
+           
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow(cp));

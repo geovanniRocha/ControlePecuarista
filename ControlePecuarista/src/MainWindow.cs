@@ -1,6 +1,7 @@
 ﻿using Data_Persistent;
 using System;
 using System.Windows.Forms;
+using ControlePecuarista.src;
 
 namespace ControlePecuarista
 {
@@ -13,7 +14,8 @@ namespace ControlePecuarista
             this.controlePecuarista = controlePecuarista;
 
             InitializeComponent();
-        }
+            
+            }
 
         private void updateTreeNodes()
         {
@@ -74,9 +76,8 @@ namespace ControlePecuarista
             #endregion unidadeAnimalNode
             
         }
-
-
-        #region Form  Functions Handler
+        
+        #region Form Functions Handler
 
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -92,11 +93,16 @@ namespace ControlePecuarista
             {
                 case @"Gastos":
                     Debug.instace.error(controlePecuarista.findGastoByID(e.Node.Index).ToString());
+                    var temp1 = new UserControl1();
+                    splitContainer3.Panel2.Controls.Clear();
+                    splitContainer3.Panel2.Controls.Add(temp1);
 
                     break;
                 case @"Maquinario":
                     Debug.instace.danger(controlePecuarista.maquinarioList[e.Node.Index].ToString());
-
+                    var temp2 = new UserControl2();
+                    splitContainer3.Panel2.Controls.Clear();
+                    splitContainer3.Panel2.Controls.Add(temp2);
                     break;
                 case @"Combustivel":
                     Debug.instace.nice(controlePecuarista.combustivelList[e.Node.Index].ToString());
@@ -125,8 +131,15 @@ namespace ControlePecuarista
         {
             Debug.instace.error(sender.ToString());
         }
-        #endregion Form  Functions Handler
+
+
+        private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var a = DataStorage.jsonSerialize(controlePecuarista);
+            DataStorage.writeFile(a, "huehe.txt");
+        }
     }
 
 
+    #endregion Form Functions Handler
 }
