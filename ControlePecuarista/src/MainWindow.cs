@@ -1,5 +1,6 @@
 ﻿using Data_Persistent;
 using System;
+using System.IO;
 using System.Windows.Forms;
 using ControlePecuarista.src;
 
@@ -92,36 +93,36 @@ namespace ControlePecuarista
             switch (e.Node.Parent.Text)
             {
                 case @"Gastos":
-                    Debug.instace.error(controlePecuarista.findGastoByID(e.Node.Index).ToString());
-                    var temp1 = new UserControl1();
+                    Debug.error(controlePecuarista.findGastoByID(e.Node.Index).ToString());
+                    var temp1 = new MaquinarioAdd();
                     splitContainer3.Panel2.Controls.Clear();
                     splitContainer3.Panel2.Controls.Add(temp1);
 
                     break;
                 case @"Maquinario":
-                    Debug.instace.danger(controlePecuarista.maquinarioList[e.Node.Index].ToString());
+                    Debug.danger(controlePecuarista.maquinarioList[e.Node.Index].ToString());
                     var temp2 = new UserControl2();
                     splitContainer3.Panel2.Controls.Clear();
                     splitContainer3.Panel2.Controls.Add(temp2);
                     break;
                 case @"Combustivel":
-                    Debug.instace.nice(controlePecuarista.combustivelList[e.Node.Index].ToString());
+                    Debug.nice(controlePecuarista.combustivelList[e.Node.Index].ToString());
 
                     break;
                 case @"Pastagem":
-                    Debug.instace.log(controlePecuarista.findPastagemByID(e.Node.Index).ToString());
+                    Debug.log(controlePecuarista.findPastagemByID(e.Node.Index).ToString());
 
                     break;
                 case @"Tipo de Pastagem":
-                    Debug.instace.log(controlePecuarista.findTipoPastagemByID(e.Node.Index).ToString());
+                    Debug.log(controlePecuarista.findTipoPastagemByID(e.Node.Index).ToString());
 
                     break;
                 case @"Unidade Animal":
-                    Debug.instace.log(controlePecuarista.findUnidadeNAnimalByID(e.Node.Index).ToString());
+                    Debug.log(controlePecuarista.findUnidadeNAnimalByID(e.Node.Index).ToString());
 
                     break;
             }
-           // Debug.instace.danger(DataStorage.jsonSerialize(controlePecuarista));
+           // Debug.instance.danger(DataStorage.jsonSerialize(controlePecuarista));
 
 
 
@@ -129,14 +130,32 @@ namespace ControlePecuarista
 
         private void opcoesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Debug.instace.error(sender.ToString());
+            Debug.error(sender.ToString());
         }
 
 
         private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.ShowDialog();
+            
+        }
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
+
+        private void saveFileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Stream stream = saveFileDialog1.OpenFile();
             var a = DataStorage.jsonSerialize(controlePecuarista);
-            DataStorage.writeFile(a, "huehe.txt");
+            DataStorage.writeFile(stream, a, saveFileDialog1.FileName);
+            
+        }
+
+        private void loadFileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Debug.nice("Load " + openFileDialog1.ToString());
+            openFileDialog1.OpenFile();
         }
     }
 

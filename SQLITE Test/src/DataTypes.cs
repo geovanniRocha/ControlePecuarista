@@ -4,7 +4,13 @@
     {
         #region Types
 
-        public class Maquinario
+        public abstract class Types
+        {
+            public abstract string SQLQuery();
+
+        }
+
+        public class Maquinario : Types
         {
             public Maquinario(int id, string nome, string descricao, int valor)
             {
@@ -27,9 +33,14 @@
             {
                 return $"{id}, {nome ?? "null"}, {descricao ?? "null"}, {valor}";
             }
+
+            public override string SQLQuery()
+            {
+                return "Select maquinarios.nome,Combustiveis.nome ,maquinarios.id from Maquinarios inner join Combustiveis where Maquinarios.combustivel_id = Combustiveis.id order by maquinarios.id asc;";
+            }
         }
 
-        public class Gastos
+        public class Gastos: Types
         {
             public Gastos()
             {
@@ -54,9 +65,14 @@
             {
                 return $"{id}, {nome ?? "Null"}, {descricao ?? "Null"}, {valor}, {data ?? "Null"}";
             }
+
+            public override string SQLQuery()
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
-        public class Combustivel
+        public class Combustivel : Types
         {
             public int id { get; set; }
             public string nome { get; set; }
@@ -76,9 +92,14 @@
             {
                 return $"{id}, {nome??"null"}";
             }
+
+            public override string SQLQuery()
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
-        public class Pastagem
+        public class Pastagem : Types
         {
             public int id { get; set; }
             public string nome { get; set; }
@@ -99,9 +120,14 @@
                 this.id = id;
                 this.nome = "Pastagem " + id;
             }
+
+            public override string SQLQuery()
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
-        public class TipoPastagem
+        public class TipoPastagem : Types
         {
             public int id { get; set; }
             public string nome { get; set; }
@@ -111,9 +137,14 @@
                 this.id = id;
                 this.nome = nome;
             }
+
+            public override string SQLQuery()
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
-        public class UnidadeAnimal
+        public class UnidadeAnimal : Types 
         {
             public int id { get; set; }
             public string nome { get; set; }
@@ -122,6 +153,13 @@
             {
                 this.id = id;
                 this.nome = nome;
+            }
+
+            public override string SQLQuery()
+            {
+
+                throw new System.NotImplementedException();
+
             }
         }
 

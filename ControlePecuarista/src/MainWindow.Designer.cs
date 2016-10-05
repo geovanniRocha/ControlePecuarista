@@ -39,6 +39,8 @@
             this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gastoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unidadeAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -93,8 +95,9 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // salvarToolStripMenuItem
             // 
@@ -137,6 +140,18 @@
             this.unidadeAnimalToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.unidadeAnimalToolStripMenuItem.Text = "Unidade Animal";
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "cdp";
+            this.saveFileDialog1.Filter = "Controle Pecuarista(*.cdp)|*";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileOk);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Controle Pecuarista(*.cdp)|*";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
+            // 
             // MainWindow
             // 
             this.AutoSize = true;
@@ -170,6 +185,8 @@
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salvarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

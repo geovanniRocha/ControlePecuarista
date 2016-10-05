@@ -9,7 +9,7 @@ namespace ControlePecuarista
 
         private static Debug _instance = null;
 
-        public static Debug instace
+        public static Debug instance
         {
 
             get
@@ -31,7 +31,7 @@ namespace ControlePecuarista
             InitializeComponent();
         }
 
-        private void appendText(string text, Color color, bool addNewLine = true)
+        private static void appendText(string text, Color color, bool addNewLine = true)
         {
 
             if (addNewLine)
@@ -39,37 +39,41 @@ namespace ControlePecuarista
                 text += Environment.NewLine;
             }
 
-            richTextBox1.SelectionStart = richTextBox1.TextLength;
-            richTextBox1.SelectionLength = 0;
+            instance. richTextBox1.SelectionStart = instance.richTextBox1.TextLength;
+            instance.richTextBox1.SelectionLength = 0;
 
-            richTextBox1.SelectionColor = color;
-            richTextBox1.AppendText(text);
-            richTextBox1.SelectionColor = richTextBox1.ForeColor;
+            instance.richTextBox1.SelectionColor = color;
+            instance.richTextBox1.AppendText(text);
+            instance.richTextBox1.SelectionColor = instance. richTextBox1.ForeColor;
         }
 
-        public void error(string text)
+        [System.Diagnostics.Conditional("DEBUG")]
+        public static void  error(string text)
         {
-            appendText("Error: " +text, Color.DarkRed);
+            Debug.appendText("Error: " +text, Color.DarkRed);
         }
 
-        public void danger(string text)
+        [System.Diagnostics.Conditional("DEBUG")]
+        public  static void danger(string text)
         {
             appendText("Danger: " + text, Color.DarkOrange);
         }
 
-        public void nice(string text)
+        [System.Diagnostics.Conditional("DEBUG")]
+        public static void nice(string text)
         {
             appendText("Nice: " + text, Color.DarkGreen);
         }
 
-        public void log(string text)
+        [System.Diagnostics.Conditional("DEBUG")]
+        public static void log(string text)
         {
             appendText("Log: " + text, Color.Black);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            richTextBox1.Clear();
+            instance.richTextBox1.Clear();
         }
     }
 

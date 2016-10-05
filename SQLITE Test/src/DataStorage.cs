@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Web.Script.Serialization;
 
 namespace Data_Persistent
@@ -46,15 +48,27 @@ namespace Data_Persistent
 
             public DataTypes.Maquinario findMaquinarioById(int id)
             {
-                foreach (var maq in maquinarioList)
-                    if (maq.id == id)
-                        return maq;
+                for (int i = 0; i < maquinarioList.Count; i++)
+                    if (maquinarioList[i].id == id)
+                        return maquinarioList[i];
                 return null;
             }
 
-           
+
             public void replaceMaquinarioByID(DataTypes.Maquinario maquinario)
             {
+                for (int i = 0; i < maquinarioList.Count; i++)
+                    if (maquinarioList[i].id == maquinario.id)
+                        maquinarioList[i] = maquinario;
+
+            }
+
+            public void deleteMaquinarioByID(int id)
+            {
+                for (int i = 0; i < maquinarioList.Count; i++)
+                    if (maquinarioList[i].id ==id)
+                        maquinarioList[i] = null;
+
             }
 
             #endregion CRUD Maquinario
@@ -76,7 +90,18 @@ namespace Data_Persistent
 
             public void replaceGastoByID(DataTypes.Gastos gasto)
             {
-                throw new NotImplementedException();
+                for (int i = 0; i < gastoList.Count; i++)
+                    if (gastoList[i].id == gasto.id)
+                        gastoList[i] = gasto;
+
+            }
+
+            public void deleteGastoByID(int id)
+            {
+                for (int i = 0; i < gastoList.Count; i++)
+                    if (gastoList[i].id == id)
+                        gastoList[i] = null;
+
             }
 
             #endregion CRUD Gastos
@@ -98,7 +123,18 @@ namespace Data_Persistent
 
             public void replaceCombustivelByID(DataTypes.Combustivel combustivel)
             {
-                throw new NotImplementedException();
+                for (int i = 0; i < combustivelList.Count; i++)
+                    if (combustivelList[i].id == combustivel.id)
+                        combustivelList[i] = combustivel;
+
+            }
+
+            public void deleteCombustivelByID(int id)
+            {
+                for (int i = 0; i < combustivelList.Count; i++)
+                    if (combustivelList[i].id == id)
+                        combustivelList[i] = null;
+
             }
 
             #endregion CRUD Combustivel
@@ -118,9 +154,20 @@ namespace Data_Persistent
                 return null;
             }
 
-            public void replacePastagemByID(DataTypes.Pastagem pasto)
+            public void replacePastagemByID(DataTypes.Pastagem pastagem)
             {
-                throw new NotImplementedException();
+                for (int i = 0; i < pastagemList.Count; i++)
+                    if (pastagemList[i].id == pastagem.id)
+                        pastagemList[i] = pastagem;
+
+            }
+
+            public void deletePastagemByID(int id)
+            {
+                for (int i = 0; i < pastagemList.Count; i++)
+                    if (pastagemList[i].id == id)
+                        pastagemList[i] = null;
+
             }
 
             #endregion CRUD Pastagem
@@ -140,9 +187,20 @@ namespace Data_Persistent
                 return null;
             }
 
-            public void replacePastagemByID(DataTypes.TipoPastagem tipoPasto)
+            public void replaceTipoPastagemByID(DataTypes.TipoPastagem tipoPastagem)
             {
-                throw new NotImplementedException();
+                for (int i = 0; i < tipoPastagemList.Count; i++)
+                    if (tipoPastagemList[i].id == tipoPastagem.id)
+                        tipoPastagemList[i] = tipoPastagem;
+
+            }
+
+            public void deleteTipoPastagemByID(int id)
+            {
+                for (int i = 0; i < tipoPastagemList.Count; i++)
+                    if (tipoPastagemList[i].id == id)
+                        tipoPastagemList[i] = null;
+
             }
 
             #endregion CRUD TipoPastagem
@@ -164,7 +222,18 @@ namespace Data_Persistent
 
             public void replaceUnidadeAnimalByID(DataTypes.UnidadeAnimal unidadeAnimal)
             {
-                throw new NotImplementedException();
+                for (int i = 0; i < unidadeAnimalList.Count; i++)
+                    if (unidadeAnimalList[i].id == unidadeAnimal.id)
+                        unidadeAnimalList[i] = unidadeAnimal;
+
+            }
+
+            public void deleteUnidadeAnimalByID(int id)
+            {
+                for (int i = 0; i < unidadeAnimalList.Count; i++)
+                    if (unidadeAnimalList[i].id == id)
+                        unidadeAnimalList[i] = null;
+
             }
 
             #endregion CRUD UnidadeAnimal
@@ -183,6 +252,15 @@ namespace Data_Persistent
             return sr;
         }
 
+        public static string readFile(Stream stream)
+        {
+            
+            return " ";
+
+        }
+
+
+
         public static void writeFile(string texto, string path)
         {
             if (File.Exists(path))
@@ -191,12 +269,20 @@ namespace Data_Persistent
             sr.WriteLine(texto);
             sr.Close();
         }
+        public static void writeFile(Stream stream, string texto, string path)
+        {
+            byte[] toBytes = Encoding.ASCII.GetBytes(texto);
+            stream.Write(toBytes, 0, toBytes.Length);
+            stream.Dispose();
+            stream.Close();
+            toBytes = null;
+        }
 
         public static string jsonSerialize(ControlePecuarista controlePecuarista)
         {
+           
             var temp = new JavaScriptSerializer();
             var b = temp.Serialize(controlePecuarista);
-
             return b;
         }
 

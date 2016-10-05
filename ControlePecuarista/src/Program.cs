@@ -9,11 +9,15 @@ namespace ControlePecuarista
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
+        /// 
+        /// 
+        /// TODO GERAR RELATORIO
         [STAThread]
         private static void Main()
         {
-            Debug.instace.log("");
-            var numberOfItens = 200;
+/* REGEX FOR REAL: \d+(?:\.\d{3})*?,\d{2} */
+            Debug.log("Works?");
+            var numberOfItens = 5;
             var cp = new DataStorage.ControlePecuarista();
             for (var i = 0; i < numberOfItens; i++)
                 cp.insertGastos(new DataTypes.Gastos(cp.gastoList.Count, "Gasto " + i, null, 0, null));

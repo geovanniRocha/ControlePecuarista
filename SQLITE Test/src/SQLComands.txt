@@ -1,0 +1,11 @@
+--Select para obter Maquinarios e combustiveis pelo ID do combustivel --
+
+Select Maquinarios.nome, Combustiveis.nome, Maquinarios.id, Combustiveis.id
+from Maquinarios inner join Combustiveis
+on  Combustiveis.id = Maquinarios.combustivel_id and
+    Combustiveis.id = 1 and
+    Combustiveis.active = 1 and
+    Maquinarios.active  =  1
+order by Maquinarios.id asc;
+
+--
