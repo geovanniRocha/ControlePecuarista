@@ -1,4 +1,5 @@
-﻿using Data_Persistent;
+﻿
+
 using System;
 using System.Windows.Forms;
 
@@ -15,32 +16,8 @@ namespace ControlePecuarista
         [STAThread]
         private static void Main()
         {
-/* REGEX FOR REAL: \d+(?:\.\d{3})*?,\d{2} */
-            Debug.log("Works?");
-            var numberOfItens = 5;
-            var cp = new DataStorage.ControlePecuarista();
-            for (var i = 0; i < numberOfItens; i++)
-                cp.insertGastos(new DataTypes.Gastos(cp.gastoList.Count, "Gasto " + i, null, 0, null));
 
-            for (var i = 0; i < numberOfItens; i++)
-                cp.insertMaquinario(new DataTypes.Maquinario(cp.maquinarioList.Count, "Maquina" + i, null, 0));
-
-            for (var i = 0; i < numberOfItens; i++)
-                cp.insertCombustivel(new DataTypes.Combustivel(cp.maquinarioList.Count, "Combustivel" + i));
-
-            for (var i = 0; i < numberOfItens; i++)
-                cp.insertPastagem(new DataTypes.Pastagem(cp.pastagemList.Count));
-
-            for (var i = 0; i < numberOfItens; i++)
-                cp.insertTipoPastagem(new DataTypes.TipoPastagem(cp.tipoPastagemList.Count, "Grama"));
-
-            for (var i = 0; i < numberOfItens; i++)
-                cp.insertUnidadeAnimal(new DataTypes.UnidadeAnimal(cp.unidadeAnimalList.Count, "UA " + i));
-
-           
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow(cp));
+            Application.Run(new MainWindow());
         }
     }
 }

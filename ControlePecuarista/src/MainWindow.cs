@@ -8,11 +8,11 @@ namespace ControlePecuarista
 {
     public partial class MainWindow : Form
     {
-        DataStorage.ControlePecuarista controlePecuarista;
+        
 
-        public MainWindow(DataStorage.ControlePecuarista controlePecuarista)
+        public MainWindow()
         {
-            this.controlePecuarista = controlePecuarista;
+            
 
             InitializeComponent();
             
@@ -25,8 +25,6 @@ namespace ControlePecuarista
             #region GastosNode
 
             var gastosNode = new TreeNode("Gastos");
-            for (var i = 0; i < controlePecuarista.gastoList.Count; i++)
-                gastosNode.Nodes.Insert(i, controlePecuarista.gastoList[i].nome);
             treeView2.Nodes.Add(gastosNode);
 
             #endregion GastosNode
@@ -34,45 +32,30 @@ namespace ControlePecuarista
             #region MaquinarioNode
 
             var maquinarioNode = new TreeNode("Maquinario");
-            for (var i = 0; i < controlePecuarista.maquinarioList.Count; i++)
-                maquinarioNode.Nodes.Insert(i, controlePecuarista.maquinarioList[i].nome);
-            treeView2.Nodes.Add(maquinarioNode);
 
             #endregion MaquinarioNode
 
             #region CombustivelNode
 
             var combustivelNode = new TreeNode("Combustivel");
-            for (var i = 0; i < controlePecuarista.combustivelList.Count; i++)
-                combustivelNode.Nodes.Insert(i, controlePecuarista.combustivelList[i].nome);
-            treeView2.Nodes.Add(combustivelNode);
 
             #endregion combustivelNode
 
             #region PastagemNode
 
             var pastagemNode = new TreeNode("Pastagem");
-            for (var i = 0; i < controlePecuarista.pastagemList.Count; i++)
-                pastagemNode.Nodes.Insert(i, controlePecuarista.pastagemList[i].nome);
-            treeView2.Nodes.Add(pastagemNode);
 
             #endregion pastagemNode
 
             #region TipoPastagemNode
 
             var tipoPastagemNode = new TreeNode("Tipo de Pastagem");
-            for (var i = 0; i < controlePecuarista.tipoPastagemList.Count; i++)
-                tipoPastagemNode.Nodes.Insert(i, controlePecuarista.tipoPastagemList[i].nome);
-            treeView2.Nodes.Add(tipoPastagemNode);
 
             #endregion tipoPastagemNode
 
             #region unidadeAnimalNode
 
             var unidadeAnimalNode = new TreeNode("Unidade Animal");
-            for (var i = 0; i < controlePecuarista.unidadeAnimalList.Count; i++)
-                unidadeAnimalNode.Nodes.Insert(i, controlePecuarista.unidadeAnimalList[i].nome);
-            treeView2.Nodes.Add(unidadeAnimalNode);
 
             #endregion unidadeAnimalNode
             
@@ -94,9 +77,9 @@ namespace ControlePecuarista
             {
                 case @"Gastos":
                     Debug.error(controlePecuarista.findGastoByID(e.Node.Index).ToString());
-                    var temp1 = new MaquinarioAdd();
+                    var temp1 = new MaquinarioAdd(0);
                     splitContainer3.Panel2.Controls.Clear();
-                    splitContainer3.Panel2.Controls.Add(temp1);
+                    splitContainer3.Panel2.Controls.Add(temp1 );
 
                     break;
                 case @"Maquinario":

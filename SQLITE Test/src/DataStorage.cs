@@ -7,7 +7,8 @@ using System.Web.Script.Serialization;
 
 namespace Data_Persistent
 {
-    //TODO REFACTOR EVERYTHING, CHANGE TO XML?
+    //TODO REFACTOR EVERYTHING, CHANGE TO SQL?
+    //Refactor, usar heranca para definir a interface, definindo assim a 
     public static class DataStorage
     {
         #region Data
@@ -18,56 +19,35 @@ namespace Data_Persistent
 
             public ControlePecuarista()
             {
-                maquinarioList = new List<DataTypes.Maquinario>();
-                gastoList = new List<DataTypes.Gastos>();
-                combustivelList = new List<DataTypes.Combustivel>();
-                pastagemList = new List<DataTypes.Pastagem>();
-                tipoPastagemList = new List<DataTypes.TipoPastagem>();
-                unidadeAnimalList = new List<DataTypes.UnidadeAnimal>();
+
             }
 
             #endregion Constructors and functions
 
             #region Vars
 
-            public List<DataTypes.Maquinario> maquinarioList;
-            public List<DataTypes.Gastos> gastoList;
-            public List<DataTypes.Combustivel> combustivelList;
-            public List<DataTypes.Pastagem> pastagemList;
-            public List<DataTypes.TipoPastagem> tipoPastagemList;
-            public List<DataTypes.UnidadeAnimal> unidadeAnimalList;
-
             #endregion Vars
 
             #region CRUD Maquinario
 
-            public void insertMaquinario(DataTypes.Maquinario maquinario)
-            {
-                maquinarioList.Add(maquinario);
+            public void insertMaquinario(DataTypes.Maquinario maquinario) {
+                string SQL = $"insert into maquinarios(id, nome, descricao, valor) values ('{maquinario.id}', '{maquinario.nome}', '{maquinario.descricao}', '{maquinario.valor}')";
+                //TOOD make it run.    
             }
 
-            public DataTypes.Maquinario findMaquinarioById(int id)
-            {
-                for (int i = 0; i < maquinarioList.Count; i++)
-                    if (maquinarioList[i].id == id)
-                        return maquinarioList[i];
+            public DataTypes.Maquinario findMaquinarioById(int id) {
+                string SQL = $"Select * from maquinario where id = {id};";
                 return null;
             }
 
 
-            public void replaceMaquinarioByID(DataTypes.Maquinario maquinario)
-            {
-                for (int i = 0; i < maquinarioList.Count; i++)
-                    if (maquinarioList[i].id == maquinario.id)
-                        maquinarioList[i] = maquinario;
+            public void replaceMaquinarioByID(DataTypes.Maquinario maquinario) {
+                string SQL = $"Update maquinario set ('{maquinario.id}', '{maquinario.nome}', '{maquinario.descricao}', '{maquinario.valor}') where id = {maquinario.id};";
 
             }
 
-            public void deleteMaquinarioByID(int id)
-            {
-                for (int i = 0; i < maquinarioList.Count; i++)
-                    if (maquinarioList[i].id ==id)
-                        maquinarioList[i] = null;
+            public void deleteMaquinarioByID(int id) {
+                string SQL = "";
 
             }
 
@@ -77,7 +57,8 @@ namespace Data_Persistent
 
             public void insertGastos(DataTypes.Gastos gasto)
             {
-                gastoList.Add(gasto);
+                string SQL = $"insert into maquinarios(id, nome, descricao, valor) values ('{gasto.id}', '{gasto.nome}', '{gasto.descricao}', '{gasto.valor}')";
+
             }
 
             public DataTypes.Gastos findGastoByID(int id)

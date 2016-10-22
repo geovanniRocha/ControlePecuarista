@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPersistent", "SQLITE Test\DataPersistent.csproj", "{58DDD3FA-0AD4-45F9-BC8B-74BBAF39EB83}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlePecuarista", "ControlePecuarista\ControlePecuarista.csproj", "{95CF645A-E498-458E-99B6-2E7C698C5DA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugWindow", "DebugWindow\DebugWindow.csproj", "{232773C6-2DB8-4C80-A79B-19942DCB4F54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPersistent", "DataPersistent\DataPersistent.csproj", "{52EAB28B-43B6-4EB9-9918-87EB7FA5E041}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{58DDD3FA-0AD4-45F9-BC8B-74BBAF39EB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58DDD3FA-0AD4-45F9-BC8B-74BBAF39EB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58DDD3FA-0AD4-45F9-BC8B-74BBAF39EB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58DDD3FA-0AD4-45F9-BC8B-74BBAF39EB83}.Release|Any CPU.Build.0 = Release|Any CPU
 		{95CF645A-E498-458E-99B6-2E7C698C5DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{95CF645A-E498-458E-99B6-2E7C698C5DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95CF645A-E498-458E-99B6-2E7C698C5DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95CF645A-E498-458E-99B6-2E7C698C5DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232773C6-2DB8-4C80-A79B-19942DCB4F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232773C6-2DB8-4C80-A79B-19942DCB4F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232773C6-2DB8-4C80-A79B-19942DCB4F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232773C6-2DB8-4C80-A79B-19942DCB4F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52EAB28B-43B6-4EB9-9918-87EB7FA5E041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52EAB28B-43B6-4EB9-9918-87EB7FA5E041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52EAB28B-43B6-4EB9-9918-87EB7FA5E041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52EAB28B-43B6-4EB9-9918-87EB7FA5E041}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
