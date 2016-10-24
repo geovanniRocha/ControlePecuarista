@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 
 namespace DataPersistent
 {
-    class CombustiveisDAO : IProvideSQL<Combustiveis>
+    class CombustiveisDAO : IProvideSQL<Combustivel>
     {
-        public override void insert(Combustiveis data)
+        public CombustiveisDAO(string path) : base(path) { }
+
+        public override void insert(Combustivel data)
         {
             string sql = $"INSERT INTO combustiveis (nome,descricao)" +
                          $"VALUES('{data.nome.ToString()}', '{data.descricao.ToString()}'); ";
@@ -24,7 +27,7 @@ namespace DataPersistent
             }
         }
 
-        public override void update(Combustiveis data)
+        public override void update(Combustivel data)
         {
             string sql = $"INSERT INTO combustiveis (nome,descricao)" +
                          $"VALUES('{data.nome.ToString()}', '{data.descricao.ToString()}'); ";
@@ -40,7 +43,8 @@ namespace DataPersistent
             }
         }
 
-        public override void delete(Combustiveis data) {
+        public override void delete(Combustivel data)
+        {
             string sql = $"delete from combustiveis where id='{data.id.ToString()}'";
             Console.WriteLine(sql);
             using (SQLiteConnection c = new SQLiteConnection(base.connection))
@@ -53,12 +57,12 @@ namespace DataPersistent
 
             }
         }
-
-        public override Combustiveis selectById(int id)
+        
+        public override Combustivel selectById(int id)
         {
             string sql = $"select id, nome, descricao from combustiveis where id='{id.ToString()}'";
             Console.WriteLine(sql);
-            Combustiveis temp = null;
+            Combustivel temp = null;
             using (SQLiteConnection c = new SQLiteConnection(base.connection))
             {
                 c.Open();
@@ -66,16 +70,18 @@ namespace DataPersistent
                 {
                     using (SQLiteDataReader reader = cmd.ExecuteReader())
                     {
-                        while (reader.Read())
-                        {
-                            Console.WriteLine(reader.FieldCount);
-                            
-                            var tempId = reader.GetInt32(0);
-                            var tempNome = reader.GetString(1);
-                            var tempDescricao = reader.GetString(2);
-                            temp = new Combustiveis(tempId, tempNome, tempDescricao);
-                            Console.WriteLine(temp.ToString());
-                        }
+
+                        if (reader.HasRows)
+                            while (reader.Read())
+                            {
+                                Console.WriteLine(reader.FieldCount);
+
+                                var tempId = reader.GetInt32(0);
+                                var tempNome = reader.GetString(1);
+                                var tempDescricao = reader.GetString(2);
+                                temp = new Combustivel(tempId, tempNome, tempDescricao);
+                                Console.WriteLine(temp.ToString());
+                            }
                     }
                 }
 
@@ -92,7 +98,7 @@ namespace DataPersistent
                         descricao STRING
                         );";
             Console.WriteLine(sql);
-            using (SQLiteConnection c = new SQLiteConnection(base.connection))
+            using (SQLiteConnection c = new SQLiteConnection(connection))
             {
                 c.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(sql, c))
@@ -104,16 +110,16 @@ namespace DataPersistent
         }
     }
 
-    class Combustiveis
+    class Combustivel
     {
-        public Combustiveis(string nome, string descricao)
+        public Combustivel(string nome, string descricao)
         {
             this.nome = nome;
             this.descricao = descricao;
         }
 
 
-        public Combustiveis(int id, string nome, string descricao)
+        public Combustivel(int id, string nome, string descricao)
         {
             this.id = id;
             this.nome = nome;
@@ -125,5 +131,6 @@ namespace DataPersistent
         public string descricao { get; set; }
 
 
+        
     }
 }

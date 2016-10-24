@@ -6,9 +6,9 @@ using System.Data.SQLite;
 
 namespace DataPersistent
 {
-    class MaquinarioDao : IProvideSQL<Maquinario>
+    class MaquinarioDAO : IProvideSQL<Maquinario>
     {
-        public MaquinarioDao() : base() { }
+        public MaquinarioDAO(string path) : base(path) { }
 
         public override void insert(Maquinario data)
         {

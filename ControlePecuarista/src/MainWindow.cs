@@ -1,4 +1,4 @@
-﻿using Data_Persistent;
+﻿
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -75,7 +75,7 @@ namespace ControlePecuarista
 
             switch (e.Node.Parent.Text)
             {
-                case @"Gastos":
+                /*case @"Gastos":
                     Debug.error(controlePecuarista.findGastoByID(e.Node.Index).ToString());
                     var temp1 = new MaquinarioAdd(0);
                     splitContainer3.Panel2.Controls.Clear();
@@ -104,6 +104,10 @@ namespace ControlePecuarista
                     Debug.log(controlePecuarista.findUnidadeNAnimalByID(e.Node.Index).ToString());
 
                     break;
+                    */
+                default:
+
+                    break;
             }
            // Debug.instance.danger(DataStorage.jsonSerialize(controlePecuarista));
 
@@ -113,7 +117,7 @@ namespace ControlePecuarista
 
         private void opcoesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Debug.error(sender.ToString());
+             
         }
 
 
@@ -129,9 +133,9 @@ namespace ControlePecuarista
 
         private void saveFileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Stream stream = saveFileDialog1.OpenFile();
+            /*Stream stream = saveFileDialog1.OpenFile();
             var a = DataStorage.jsonSerialize(controlePecuarista);
-            DataStorage.writeFile(stream, a, saveFileDialog1.FileName);
+            DataStorage.writeFile(stream, a, saveFileDialog1.FileName);*/
             
         }
 
@@ -139,6 +143,11 @@ namespace ControlePecuarista
         {
             Debug.nice("Load " + openFileDialog1.ToString());
             openFileDialog1.OpenFile();
+        }
+
+        private void novoToolStripMenuItem1_Click(object sender, EventArgs e) {
+            saveFileDialog1.ShowDialog();
+            Debug.log(saveFileDialog1.FileName);
         }
     }
 

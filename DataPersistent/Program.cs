@@ -7,11 +7,15 @@ namespace DataPersistent
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            CombustiveisDAO combustiveisDao = new CombustiveisDAO();
-            combustiveisDao.createTable();
-            
+        static void Main(string[] args) {
+
+            var path = @"D:\mydb.db3";
+            CombustiveisDAO combustiveisDao = new CombustiveisDAO(path);
+            MaquinarioDAO maquinarioDao = new MaquinarioDAO(path);
+
+            //combustiveisDao.createTable();
+            Combustivel a = combustiveisDao.selectById(1);
+                
 
             Console.WriteLine("Done");
             Console.ReadKey();

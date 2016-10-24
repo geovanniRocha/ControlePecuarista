@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Combustiveis.cs" />
+    <Compile Include="Combustivel.cs" />
     <Compile Include="IProvideSQL.cs" />
     <Compile Include="Maquinario.cs" />
     <Compile Include="Program.cs" />

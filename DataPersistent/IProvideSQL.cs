@@ -9,11 +9,12 @@ namespace DataPersistent
 
 
     abstract class IProvideSQL<T> {
-        const string path = @"D:\mydb.db3";
-        public string connection {get; set;}
 
-        public IProvideSQL() {
-            connection = ($"Data Source={path};Version=3;");
+        //string path = @"D:\mydb.db3";
+        public SQLiteConnection connection {get; set;}
+
+        public IProvideSQL(string path) {
+            connection = new SQLiteConnection($"Data Source={path};Version=3;");
         }
         
 
