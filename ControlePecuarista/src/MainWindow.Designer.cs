@@ -32,17 +32,16 @@
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.opcoesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.novoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gastoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unidadeAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.novoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salvarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -87,14 +86,41 @@
             // 
             this.opcoesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.novoToolStripMenuItem1,
-            this.abrirToolStripMenuItem,
-            this.salvarToolStripMenuItem,
+            this.openToolStripMenuItem,
             this.toolStripSeparator1,
             this.sairToolStripMenuItem});
             this.opcoesToolStripMenuItem.Name = "opcoesToolStripMenuItem";
             this.opcoesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.opcoesToolStripMenuItem.Text = "Opcoes";
-            this.opcoesToolStripMenuItem.Click += new System.EventHandler(this.opcoesToolStripMenuItem_Click);
+            // 
+            // novoToolStripMenuItem1
+            // 
+            this.novoToolStripMenuItem1.Image = global::ControlePecuarista.Resource1.ic_description_black_24dp_1x;
+            this.novoToolStripMenuItem1.Name = "novoToolStripMenuItem1";
+            this.novoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.novoToolStripMenuItem1.Text = "Novo";
+            this.novoToolStripMenuItem1.Click += new System.EventHandler(this.novoToolStripMenuItem1_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Image = global::ControlePecuarista.Resource1.ic_folder_black_24dp_1x;
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Abrir";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // sairToolStripMenuItem
+            // 
+            this.sairToolStripMenuItem.Image = global::ControlePecuarista.Resource1.ic_exit_to_app_black_24dp_1x;
+            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // iniciarToolStripMenuItem
             // 
@@ -109,68 +135,32 @@
             // novoToolStripMenuItem
             // 
             this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.novoToolStripMenuItem.Text = "Maquinario";
+            this.novoToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.novoToolStripMenuItem.Text = "MaquinarioUserControl";
             // 
             // gastoToolStripMenuItem
             // 
             this.gastoToolStripMenuItem.Name = "gastoToolStripMenuItem";
-            this.gastoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.gastoToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.gastoToolStripMenuItem.Text = "Gasto";
             // 
             // unidadeAnimalToolStripMenuItem
             // 
             this.unidadeAnimalToolStripMenuItem.Name = "unidadeAnimalToolStripMenuItem";
-            this.unidadeAnimalToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.unidadeAnimalToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.unidadeAnimalToolStripMenuItem.Text = "Unidade Animal";
             // 
-            // saveFileDialog1
+            // newFileDialog
             // 
-            this.saveFileDialog1.DefaultExt = "cdp";
-            this.saveFileDialog1.Filter = "Controle Pecuarista(*.cdp)|*";
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileOk);
+            this.newFileDialog.DefaultExt = "cdp";
+            this.newFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
+            this.newFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.newFileOk);
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Controle Pecuarista(*.cdp)|*";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // novoToolStripMenuItem1
-            // 
-            this.novoToolStripMenuItem1.Image = global::ControlePecuarista.Resource1.ic_description_black_24dp_1x;
-            this.novoToolStripMenuItem1.Name = "novoToolStripMenuItem1";
-            this.novoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.novoToolStripMenuItem1.Text = "Novo";
-            this.novoToolStripMenuItem1.Click += new System.EventHandler(this.novoToolStripMenuItem1_Click);
-            // 
-            // abrirToolStripMenuItem
-            // 
-            this.abrirToolStripMenuItem.Image = global::ControlePecuarista.Resource1.ic_folder_black_24dp_1x;
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
-            // 
-            // salvarToolStripMenuItem
-            // 
-            this.salvarToolStripMenuItem.Image = global::ControlePecuarista.Resource1.ic_save_black_24dp_1x;
-            this.salvarToolStripMenuItem.Name = "salvarToolStripMenuItem";
-            this.salvarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salvarToolStripMenuItem.Text = "Salvar";
-            this.salvarToolStripMenuItem.Click += new System.EventHandler(this.salvarToolStripMenuItem_Click);
-            // 
-            // sairToolStripMenuItem
-            // 
-            this.sairToolStripMenuItem.Image = global::ControlePecuarista.Resource1.ic_exit_to_app_black_24dp_1x;
-            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sairToolStripMenuItem.Text = "Sair";
+            this.openFileDialog.FileName = "openFileDialog";
+            this.openFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
             // 
             // MainWindow
             // 
@@ -202,11 +192,10 @@
         private System.Windows.Forms.ToolStripMenuItem gastoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unidadeAnimalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opcoesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salvarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog newFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }

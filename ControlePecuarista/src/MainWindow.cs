@@ -1,27 +1,59 @@
 ﻿
 using System;
+using System.ComponentModel;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using ControlePecuarista.src;
+
 
 namespace ControlePecuarista
 {
     public partial class MainWindow : Form
     {
-        
+
+        public static string currentPath;
+        private DataPersistent.MaquinarioDAO maquinarioDao;
+        private DataPersistent.CombustiveisDAO combustiveisDao;
+
+        //using static to enable crossClass use.
+        //Action to enable updateTreeNodes in others UserControlls
+        //See MaquinarioUserControl onButtonClick for details
+        public static Action updateTreeNodesAction;
 
         public MainWindow()
         {
-            
-
+            currentPath = null;
             InitializeComponent();
-            
-            }
+            //set function to Action
+            updateTreeNodesAction = updateTreeNodes;
+            iniciarToolStripMenuItem.Enabled = false;
 
-        private void updateTreeNodes()
+        }
+
+        void initDaos()
+        {
+            if (currentPath == null) return;
+            maquinarioDao = new DataPersistent.MaquinarioDAO(currentPath);
+            combustiveisDao = new DataPersistent.CombustiveisDAO(currentPath);
+        }
+
+
+        #region Form Functions Handler
+
+        #region Form
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            //updateTreeNodes();
+        }
+        #endregion
+
+        #region treeView
+
+        public void updateTreeNodes()
         {
             treeView2.Nodes.Clear();
-            
+
             #region GastosNode
 
             var gastosNode = new TreeNode("Gastos");
@@ -32,125 +64,152 @@ namespace ControlePecuarista
             #region MaquinarioNode
 
             var maquinarioNode = new TreeNode("Maquinario");
+            var selectedIdAndStringFromDb = maquinarioDao.selectIdAndString();
+            foreach (var b in selectedIdAndStringFromDb)
+            {
+                maquinarioNode.Nodes.Add(b.Key + "", b.Value);
+            }
+            treeView2.Nodes.Add(maquinarioNode);
+
 
             #endregion MaquinarioNode
 
             #region CombustivelNode
 
             var combustivelNode = new TreeNode("Combustivel");
+            treeView2.Nodes.Add(combustivelNode);
 
             #endregion combustivelNode
 
             #region PastagemNode
 
             var pastagemNode = new TreeNode("Pastagem");
+            treeView2.Nodes.Add(pastagemNode);
 
             #endregion pastagemNode
 
             #region TipoPastagemNode
 
             var tipoPastagemNode = new TreeNode("Tipo de Pastagem");
+            treeView2.Nodes.Add(tipoPastagemNode);
 
             #endregion tipoPastagemNode
 
             #region unidadeAnimalNode
 
             var unidadeAnimalNode = new TreeNode("Unidade Animal");
+            treeView2.Nodes.Add(unidadeAnimalNode);
 
             #endregion unidadeAnimalNode
-            
-        }
-        
-        #region Form Functions Handler
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            updateTreeNodes();
         }
 
         private void treeView2_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+
+
             if (e.Node.Parent == null)
                 return;
 
             switch (e.Node.Parent.Text)
             {
-                /*case @"Gastos":
-                    Debug.error(controlePecuarista.findGastoByID(e.Node.Index).ToString());
-                    var temp1 = new MaquinarioAdd(0);
-                    splitContainer3.Panel2.Controls.Clear();
-                    splitContainer3.Panel2.Controls.Add(temp1 );
 
-                    break;
-                case @"Maquinario":
-                    Debug.danger(controlePecuarista.maquinarioList[e.Node.Index].ToString());
-                    var temp2 = new UserControl2();
+                case @"Gastos":
+
+                    var temp2 = new Gastos();
                     splitContainer3.Panel2.Controls.Clear();
                     splitContainer3.Panel2.Controls.Add(temp2);
+
                     break;
+
+                case @"Maquinario":
+                   
+                    var temp1 = new MaquinarioUserControl(e.Node.Name);
+                    splitContainer3.Panel2.Controls.Clear();
+                    splitContainer3.Panel2.Controls.Add(temp1);
+                    break;
+
                 case @"Combustivel":
-                    Debug.nice(controlePecuarista.combustivelList[e.Node.Index].ToString());
+
 
                     break;
                 case @"Pastagem":
-                    Debug.log(controlePecuarista.findPastagemByID(e.Node.Index).ToString());
+
 
                     break;
                 case @"Tipo de Pastagem":
-                    Debug.log(controlePecuarista.findTipoPastagemByID(e.Node.Index).ToString());
+
 
                     break;
                 case @"Unidade Animal":
-                    Debug.log(controlePecuarista.findUnidadeNAnimalByID(e.Node.Index).ToString());
+
 
                     break;
-                    */
-                default:
 
-                    break;
+
             }
-           // Debug.instance.danger(DataStorage.jsonSerialize(controlePecuarista));
-
+            // Debug.instance.danger(DataStorage.jsonSerialize(controlePecuarista));
 
 
         }
 
-        private void opcoesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void createDataBase()
         {
-             
+            maquinarioDao.createTable();
+            combustiveisDao.createTable();
         }
 
+        #endregion
 
-        private void salvarToolStripMenuItem_Click(object sender, EventArgs e)
+        #region  MenuBar
+
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.ShowDialog();
-            
+            openFileDialog.ShowDialog();
         }
-        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
-        }
-
-        private void saveFileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            /*Stream stream = saveFileDialog1.OpenFile();
-            var a = DataStorage.jsonSerialize(controlePecuarista);
-            DataStorage.writeFile(stream, a, saveFileDialog1.FileName);*/
-            
-        }
-
         private void loadFileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Debug.nice("Load " + openFileDialog1.ToString());
-            openFileDialog1.OpenFile();
+             
+            currentPath = openFileDialog.FileName;
+            initDaos();
+            updateTreeNodes();
+            iniciarToolStripMenuItem.Enabled = true;
+
         }
 
-        private void novoToolStripMenuItem1_Click(object sender, EventArgs e) {
-            saveFileDialog1.ShowDialog();
-            Debug.log(saveFileDialog1.FileName);
+        private void novoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            newFileDialog.ShowDialog();
+
+
         }
+        private void newFileOk(object sender, CancelEventArgs e)
+        {
+            currentPath = newFileDialog.FileName;
+            initDaos();
+            createDataBase();
+            updateTreeNodes();
+            iniciarToolStripMenuItem.Enabled = true;
+
+        }
+
+       
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
+
+
+        #endregion
+
+
     }
 
 
     #endregion Form Functions Handler
+
+
 }

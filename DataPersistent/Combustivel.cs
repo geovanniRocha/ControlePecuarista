@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataPersistent
 {
-    class CombustiveisDAO : IProvideSQL<Combustivel>
+    public class CombustiveisDAO : IProvideSQL<Combustivel>
     {
         public CombustiveisDAO(string path) : base(path) { }
 
@@ -31,7 +31,6 @@ namespace DataPersistent
         {
             string sql = $"INSERT INTO combustiveis (nome,descricao)" +
                          $"VALUES('{data.nome.ToString()}', '{data.descricao.ToString()}'); ";
-            Console.WriteLine(sql);
             using (SQLiteConnection c = new SQLiteConnection(base.connection))
             {
                 c.Open();
@@ -108,9 +107,41 @@ namespace DataPersistent
 
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>A list with ID and Nome</returns>
+        public override Dictionary<int, string> selectIdAndString() {
+            Dictionary<int, string> combustiveisList = new Dictionary<int, string>();
+
+            string sql = $"select id, nome from combustiveis";
+            Console.WriteLine(sql);
+            Combustivel temp = null;
+            using (SQLiteConnection c = new SQLiteConnection(base.connection))
+            {
+                c.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(sql, c))
+                {
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        if (reader.HasRows)
+                            while (reader.Read())
+                            {
+
+                                var tempId = reader.GetInt32(0);
+                                var tempNome = reader.GetString(1);
+                                combustiveisList.Add(tempId, tempNome);
+                            }
+                    }
+                }
+            }
+            return combustiveisList;
+        }
     }
 
-    class Combustivel
+    public class Combustivel
     {
         public Combustivel(string nome, string descricao)
         {

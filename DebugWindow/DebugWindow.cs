@@ -2,77 +2,80 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-
-public partial class Debug : Form
+namespace ControlePecuarista
 {
-
-    private static Debug _instance = null;
-
-    public static Debug instance
+    public partial class Debug : Form
     {
-        get
+
+        private static Debug _instance = null;
+
+        public static Debug instance
         {
 
-            if (_instance == null)
+            get
             {
-                _instance = new Debug();
+
+                if (_instance == null)
+                {
+                    _instance = new Debug();
 #if DEBUG
-                _instance.Visible = true;
+                    _instance.Visible = true;
 #endif
+                }
+                return _instance;
             }
-            return _instance;
         }
-    }
 
-    private Debug()
-    {
-        InitializeComponent();
-    }
-
-    private static void appendText(string text, Color color, bool addNewLine = true)
-    {
-        if (addNewLine)
+        private Debug()
         {
-            text += Environment.NewLine;
+            InitializeComponent();
         }
 
-        instance.richTextBox1.SelectionStart = instance.richTextBox1.TextLength;
-        instance.richTextBox1.SelectionLength = 0;
+        private static void appendText(string text, Color color, bool addNewLine = true)
+        {
 
-        instance.richTextBox1.SelectionColor = color;
-        instance.richTextBox1.AppendText(text);
-        instance.richTextBox1.SelectionColor = instance.richTextBox1.ForeColor;
+            if (addNewLine)
+            {
+                text += Environment.NewLine;
+            }
+
+            instance. richTextBox1.SelectionStart = instance.richTextBox1.TextLength;
+            instance.richTextBox1.SelectionLength = 0;
+
+            instance.richTextBox1.SelectionColor = color;
+            instance.richTextBox1.AppendText(text);
+            instance.richTextBox1.SelectionColor = instance. richTextBox1.ForeColor;
+        }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        public static void  error(string text)
+        {
+            Debug.appendText("Error: " +text, Color.DarkRed);
+        }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        public  static void danger(string text)
+        {
+            appendText("Danger: " + text, Color.DarkOrange);
+        }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        public static void nice(string text)
+        {
+            appendText("Nice: " + text, Color.DarkGreen);
+        }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        public static void log(string text)
+        {
+            appendText("Log: " + text, Color.Black);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            instance.richTextBox1.Clear();
+        }
     }
 
-    [System.Diagnostics.Conditional("DEBUG")]
-    public static void error(string text)
-    {
-        Debug.appendText("Error: " + text, Color.DarkRed);
-    }
 
-    [System.Diagnostics.Conditional("DEBUG")]
-    public static void danger(string text)
-    {
-        appendText("Danger: " + text, Color.DarkOrange);
-    }
-
-    [System.Diagnostics.Conditional("DEBUG")]
-    public static void nice(string text)
-    {
-        appendText("Nice: " + text, Color.DarkGreen);
-    }
-
-    [System.Diagnostics.Conditional("DEBUG")]
-    public static void log(string text)
-    {
-        appendText("Log: " + text, Color.Black);
-    }
-
-    private void button1_Click(object sender, EventArgs e)
-    {
-        instance.richTextBox1.Clear();
-    }
 }
-
-
-

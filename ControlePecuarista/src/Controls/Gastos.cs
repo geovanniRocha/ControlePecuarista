@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ControlePecuarista.src
 {
-    public partial class UserControl2 : UserControl
+    public partial class Gastos : UserControl
     {
-        public UserControl2()
+        public Gastos()
         {
             InitializeComponent();
         }
