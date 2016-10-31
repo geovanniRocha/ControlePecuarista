@@ -6,12 +6,10 @@ using System.Data.SQLite;
 
 namespace DataPersistent
 {
-   public class MaquinarioDAO : IProvideSQL<Maquinario>
-    {
-        public MaquinarioDAO(string path) : base(path) { }
+    public class MaquinarioDAO : IProvideSQL<Maquinario> {
+        public MaquinarioDAO(string path) : base(path) {}
 
-        public override void insert(Maquinario data)
-        {
+        public override void insert(Maquinario data) {
             string sql = $"INSERT INTO maquinarios (nome,descricao,combustivel_id)" +
                          $"VALUES('{data.nome.ToString()}', '{data.descricao.ToString()}', '{data.combustivel_id.ToString()}'); ";
             Console.WriteLine("Logger " + sql);
@@ -25,10 +23,10 @@ namespace DataPersistent
             }
         }
 
-        public override void update(Maquinario data)
-        {
+        public override void update(Maquinario data) {
 
-            string sql = $"Update maquinarios set nome='{data.nome.ToString()}', descricao='{data.descricao.ToString()}' , combustivel_id ='{data.combustivel_id.ToString()}'  where id='{data.id.ToString()}';";
+            string sql =
+                $"Update maquinarios set nome='{data.nome.ToString()}', descricao='{data.descricao.ToString()}' , combustivel_id ='{data.combustivel_id.ToString()}'  where id='{data.id.ToString()}';";
             Console.WriteLine("update sql: " + sql);
             using (SQLiteConnection c = new SQLiteConnection(base.connection))
             {
@@ -40,8 +38,7 @@ namespace DataPersistent
             }
         }
 
-        public override void delete(Maquinario data)
-        {
+        public override void delete(Maquinario data) {
 
             string sql = $"delete from maquinarios where id='{data.id.ToString()}'";
             using (SQLiteConnection c = new SQLiteConnection(base.connection))
@@ -54,8 +51,7 @@ namespace DataPersistent
             }
         }
 
-        public override Maquinario selectById(int id)
-        {
+        public override Maquinario selectById(int id) {
 
             string sql = $"select id, nome, descricao, combustivel_id from maquinarios where id='{id.ToString()}'";
             Console.WriteLine(sql);
@@ -76,20 +72,19 @@ namespace DataPersistent
                             var tempnome = reader.GetString(1);
                             var tempdescricao = reader.GetString(2);
                             var tempComb = reader.GetInt32(3);
-                            temp = new Maquinario(tempid, tempnome, tempdescricao,tempComb);
+                            temp = new Maquinario(tempid, tempnome, tempdescricao, tempComb);
                             Console.WriteLine(temp.ToString());
                         }
                     }
                 }
-               
+
 
             }
             return temp;
 
         }
 
-        public override void createTable()
-        {
+        public override void createTable() {
 
             string sql = @"CREATE TABLE maquinarios (
                             id             INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -136,8 +131,29 @@ namespace DataPersistent
             return tempDictionary;
 
         }
-    }
 
+        public override List<Maquinario> selectEverything() {
+            var tempList = new List<Maquinario>();
+            string sql = $"select id, nome, descricao from maquinarios;";
+            Console.WriteLine(sql);
+            Maquinario temp = null;
+            using (SQLiteConnection c = new SQLiteConnection(base.connection))
+            {
+                c.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(sql, c))
+                {
+                    using (SQLiteDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tempList.Add(new Maquinario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), 0));
+                        }
+                    }
+                }
+            }
+            return tempList;
+        }
+    }
 
     public class Maquinario
     {
@@ -165,7 +181,7 @@ namespace DataPersistent
 
         public override string ToString()
         {
-            return $"{this.id}:{this.nome}:{this.descricao}:{combustivel_id}:{base.ToString()}";
+            return $"{this.id}:{this.nome}:{this.descricao}:{combustivel_id}";
         }
     }
 

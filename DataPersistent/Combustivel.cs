@@ -56,7 +56,7 @@ namespace DataPersistent
 
             }
         }
-        
+
         public override Combustivel selectById(int id)
         {
             string sql = $"select id, nome, descricao from combustiveis where id='{id.ToString()}'";
@@ -79,7 +79,7 @@ namespace DataPersistent
                                 var tempNome = reader.GetString(1);
                                 var tempDescricao = reader.GetString(2);
                                 temp = new Combustivel(tempId, tempNome, tempDescricao);
-                                Console.WriteLine(temp.ToString());
+
                             }
                     }
                 }
@@ -87,6 +87,11 @@ namespace DataPersistent
 
             }
             return temp;
+        }
+
+        public override List<Combustivel> selectEverything()
+        {
+            throw new NotImplementedException();
         }
 
         public override void createTable()
@@ -112,7 +117,8 @@ namespace DataPersistent
         /// 
         /// </summary>
         /// <returns>A list with ID and Nome</returns>
-        public override Dictionary<int, string> selectIdAndString() {
+        public override Dictionary<int, string> selectIdAndString()
+        {
             Dictionary<int, string> combustiveisList = new Dictionary<int, string>();
 
             string sql = $"select id, nome from combustiveis";
@@ -162,6 +168,6 @@ namespace DataPersistent
         public string descricao { get; set; }
 
 
-        
+
     }
 }

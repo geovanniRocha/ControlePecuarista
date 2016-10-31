@@ -42,6 +42,7 @@
             this.unidadeAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.gerarRelatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -75,7 +76,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.opcoesToolStripMenuItem,
-            this.iniciarToolStripMenuItem});
+            this.iniciarToolStripMenuItem,
+            this.gerarRelatorioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(449, 24);
@@ -97,7 +99,7 @@
             // 
             this.novoToolStripMenuItem1.Image = global::ControlePecuarista.Resource1.ic_description_black_24dp_1x;
             this.novoToolStripMenuItem1.Name = "novoToolStripMenuItem1";
-            this.novoToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.novoToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.novoToolStripMenuItem1.Text = "Novo";
             this.novoToolStripMenuItem1.Click += new System.EventHandler(this.novoToolStripMenuItem1_Click);
             // 
@@ -105,20 +107,20 @@
             // 
             this.openToolStripMenuItem.Image = global::ControlePecuarista.Resource1.ic_folder_black_24dp_1x;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Abrir";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(100, 6);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Image = global::ControlePecuarista.Resource1.ic_exit_to_app_black_24dp_1x;
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -162,6 +164,13 @@
             this.openFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
             // 
+            // gerarRelatorioToolStripMenuItem
+            // 
+            this.gerarRelatorioToolStripMenuItem.Name = "gerarRelatorioToolStripMenuItem";
+            this.gerarRelatorioToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.gerarRelatorioToolStripMenuItem.Text = "Gerar Relatorio";
+            this.gerarRelatorioToolStripMenuItem.Click += new System.EventHandler(this.gerarRelatorioToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoSize = true;
@@ -198,6 +207,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem gerarRelatorioToolStripMenuItem;
     }
 }
 

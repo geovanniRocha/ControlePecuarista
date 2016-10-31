@@ -17,6 +17,7 @@ namespace ControlePecuarista
         private static void Main()
         {
 
+
             Application.Run(new MainWindow());
         }
     }

@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DebugDLL">
+      <HintPath>..\DebugDLL.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -162,6 +165,10 @@
     <ProjectReference Include="..\DataPersistent\DataPersistent.csproj">
       <Project>{52eab28b-43b6-4eb9-9918-87eb7fa5e041}</Project>
       <Name>DataPersistent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeradorRelatorio\GeradorRelatorio.csproj">
+      <Project>{a4d49c7a-8871-4639-a766-078061854029}</Project>
+      <Name>GeradorRelatorio</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

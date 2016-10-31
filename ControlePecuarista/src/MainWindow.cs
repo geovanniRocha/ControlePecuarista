@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using ControlePecuarista.src;
+using GeradorRelatorio;
 
 
 namespace ControlePecuarista
@@ -203,9 +204,19 @@ namespace ControlePecuarista
         }
 
 
+
         #endregion
 
-
+        private void gerarRelatorioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var a = new HTMLBuilder();
+            a.addButton("Maquinarios");
+            a.initDiv("Maquinarios");
+            a.addMaquinariosTable(maquinarioDao.selectEverything());
+            a.endDiv();
+            a.css();
+            DebugDLL.Debug.warning(a.toHTML());
+        }
     }
 
 
