@@ -1,63 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
+﻿using DataPersistent;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DataPersistent;
 
 namespace ControlePecuarista.src
 {
     public partial class MaquinarioUserControl : UserControl
     {
-
         private int currentID;
-        private DataPersistent.Maquinario currentMaquinario;
-        private DataPersistent.MaquinarioDAO maquinarioDao;
-       
+        private Maquinario currentMaquinario;
+        private MaquinarioDAO maquinarioDao;
+        private CombustiveisDAO combustiveisDao;
 
-        public MaquinarioUserControl(string id = null)//TODO MAKE THIS RIGHT
+        public MaquinarioUserControl(string id = null)
         {
             InitializeComponent();
             currentID = -1;
             maquinarioDao = new MaquinarioDAO(MainWindow.currentPath);
+            combustiveisDao = new CombustiveisDAO(MainWindow.currentPath);
+            comboBox1.DataSource = combustiveisDao.selectIdAndString().Values.ToArray();
 
             if (id != null)
             {
                 currentID = int.Parse(id);
-
-                DataPersistent.CombustiveisDAO temp2 = new CombustiveisDAO(MainWindow.currentPath   );
-                comboBox1.DataSource = temp2.selectIdAndString().Values.ToArray();
                 currentMaquinario = maquinarioDao.selectById(int.Parse(id));
-                this.textBox1.Text = currentMaquinario.nome;
-                this.textBox2.Text = currentMaquinario.descricao;
-                this.comboBox1.SelectedIndex = currentMaquinario.combustivel_id;
-             }
-
-
+                textBox1.Text = currentMaquinario.nome;
+                textBox2.Text = currentMaquinario.descricao;
+                comboBox1.SelectedIndex = currentMaquinario.combustivel_id - 1;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (currentID != -1) // Update
             {
-                currentMaquinario.nome = this.textBox1.Text;
-                currentMaquinario.descricao = this.textBox2.Text;
-                currentMaquinario.combustivel_id = this.comboBox1.SelectedIndex;
+                currentMaquinario.nome = textBox1.Text;
+                currentMaquinario.descricao = textBox2.Text;
+                currentMaquinario.combustivel_id = comboBox1.SelectedIndex + 1;
                 maquinarioDao.update(currentMaquinario);
-
             }
-            else // Create
+            else
             {
-                //currentMaquinario = new Maquinario();
-                //maquinarioDao.insert(currentMaquinario);
+                currentMaquinario = new Maquinario();
+                currentMaquinario.nome = textBox1.Text;
+                currentMaquinario.descricao = textBox2.Text;
+                currentMaquinario.combustivel_id = comboBox1.SelectedIndex + 1;
+                DebugDLL.Debug.debug("select index:" + comboBox1.SelectedIndex);
+                maquinarioDao.insert(currentMaquinario);
             }
 
             MainWindow.updateTreeNodesAction();
-            this.Dispose();
+            Dispose();
         }
     }
 }

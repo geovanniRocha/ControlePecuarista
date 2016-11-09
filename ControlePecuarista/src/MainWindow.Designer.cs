@@ -40,9 +40,9 @@
             this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gastoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unidadeAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerarRelatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.gerarRelatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -83,6 +83,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(449, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Resize += new System.EventHandler(this.menuStrip1_Resize);
             // 
             // opcoesToolStripMenuItem
             // 
@@ -137,20 +138,30 @@
             // novoToolStripMenuItem
             // 
             this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.novoToolStripMenuItem.Text = "MaquinarioUserControl";
+            this.novoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.novoToolStripMenuItem.Text = "Maquinario";
+            this.novoToolStripMenuItem.Click += new System.EventHandler(this.MaquinarioAdicioanr);
             // 
             // gastoToolStripMenuItem
             // 
             this.gastoToolStripMenuItem.Name = "gastoToolStripMenuItem";
-            this.gastoToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.gastoToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.gastoToolStripMenuItem.Text = "Gasto";
+            this.gastoToolStripMenuItem.Click += new System.EventHandler(this.GastoAdicionar);
             // 
             // unidadeAnimalToolStripMenuItem
             // 
             this.unidadeAnimalToolStripMenuItem.Name = "unidadeAnimalToolStripMenuItem";
-            this.unidadeAnimalToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.unidadeAnimalToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.unidadeAnimalToolStripMenuItem.Text = "Unidade Animal";
+            this.unidadeAnimalToolStripMenuItem.Click += new System.EventHandler(this.UnidadeAnimalAdicionar);
+            // 
+            // gerarRelatorioToolStripMenuItem
+            // 
+            this.gerarRelatorioToolStripMenuItem.Name = "gerarRelatorioToolStripMenuItem";
+            this.gerarRelatorioToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.gerarRelatorioToolStripMenuItem.Text = "Gerar Relatorio";
+            this.gerarRelatorioToolStripMenuItem.Click += new System.EventHandler(this.gerarRelatorioToolStripMenuItem_Click);
             // 
             // newFileDialog
             // 
@@ -163,13 +174,6 @@
             this.openFileDialog.FileName = "openFileDialog";
             this.openFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
-            // 
-            // gerarRelatorioToolStripMenuItem
-            // 
-            this.gerarRelatorioToolStripMenuItem.Name = "gerarRelatorioToolStripMenuItem";
-            this.gerarRelatorioToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
-            this.gerarRelatorioToolStripMenuItem.Text = "Gerar Relatorio";
-            this.gerarRelatorioToolStripMenuItem.Click += new System.EventHandler(this.gerarRelatorioToolStripMenuItem_Click);
             // 
             // MainWindow
             // 

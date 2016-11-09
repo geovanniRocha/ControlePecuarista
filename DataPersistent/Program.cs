@@ -1,42 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DataPersistent
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
+    internal class Program {
 
+        private static void Main(string[] args) {
             var path = @"D:\mydb.db3";
-            CombustiveisDAO combustiveisDao = new CombustiveisDAO(path);
-            MaquinarioDAO maquinarioDao = new MaquinarioDAO(path);
+            var combustiveisDao = new CombustiveisDAO(path);
+            var maquinarioDao = new MaquinarioDAO(path);
 
-            //combustiveisDao.createTable();
-            var a = maquinarioDao.selectEverything();
-            foreach (var VARIABLE in a)
-            {
-                Console.WriteLine(VARIABLE.ToString());
-            }
-            Console.WriteLine("Done");
             Console.ReadKey();
-
         }
 
-        static string random(int maxSize = 8)
-        {
+        private static string random(int maxSize = 8) {
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var stringChars = new char[maxSize];
             var random = new Random();
 
-            for (int i = 0; i < stringChars.Length; i++)
+            for (var i = 0; i < stringChars.Length; i++)
             {
                 stringChars[i] = chars[random.Next(chars.Length)];
             }
 
-            var finalString = new String(stringChars);
+            var finalString = new string(stringChars);
             return finalString;
         }
     }
