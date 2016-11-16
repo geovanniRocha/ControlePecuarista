@@ -72,7 +72,7 @@ namespace DataPersistent
 
         public override List<Gastos> selectEverything() {
             string sql = $"select id,Nome,IDCategoria,IDRef, Valor, Descricao from Gastos;";
-            List<Gastos> temp = null;
+            List<Gastos> temp = new List<Gastos>();
             using (var c = new SQLiteConnection(connection))
             {
                 c.Open();
@@ -105,6 +105,7 @@ namespace DataPersistent
     }
 
     public class Gastos {
+        public Gastos(){}
 
         public Gastos(string nome, int idCategoria, int idRef, float valor, string descricao) {
             this.nome = nome;

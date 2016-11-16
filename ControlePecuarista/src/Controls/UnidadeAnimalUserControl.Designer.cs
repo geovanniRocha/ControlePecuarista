@@ -42,7 +42,7 @@
             this.nomeTextBox = new System.Windows.Forms.TextBox();
             this.dataEntradaDatePicker = new System.Windows.Forms.DateTimePicker();
             this.dataSaidaDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.racaComboBox = new System.Windows.Forms.ComboBox();
+            this.racaTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -148,6 +148,8 @@
             // 
             // nomeTextBox
             // 
+            this.nomeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nomeTextBox.Location = new System.Drawing.Point(108, 6);
             this.nomeTextBox.Name = "nomeTextBox";
             this.nomeTextBox.Size = new System.Drawing.Size(391, 20);
@@ -173,21 +175,20 @@
             this.dataSaidaDatePicker.Size = new System.Drawing.Size(391, 20);
             this.dataSaidaDatePicker.TabIndex = 16;
             // 
-            // racaComboBox
+            // racaTextBox
             // 
-            this.racaComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.racaTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.racaComboBox.FormattingEnabled = true;
-            this.racaComboBox.Location = new System.Drawing.Point(108, 136);
-            this.racaComboBox.Name = "racaComboBox";
-            this.racaComboBox.Size = new System.Drawing.Size(391, 21);
-            this.racaComboBox.TabIndex = 17;
+            this.racaTextBox.Location = new System.Drawing.Point(108, 136);
+            this.racaTextBox.Name = "racaTextBox";
+            this.racaTextBox.Size = new System.Drawing.Size(391, 20);
+            this.racaTextBox.TabIndex = 17;
             // 
             // UnidadeAnimalUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.racaComboBox);
+            this.Controls.Add(this.racaTextBox);
             this.Controls.Add(this.dataSaidaDatePicker);
             this.Controls.Add(this.dataEntradaDatePicker);
             this.Controls.Add(this.nomeTextBox);
@@ -225,6 +226,6 @@
         private System.Windows.Forms.TextBox nomeTextBox;
         private System.Windows.Forms.DateTimePicker dataEntradaDatePicker;
         private System.Windows.Forms.DateTimePicker dataSaidaDatePicker;
-        private System.Windows.Forms.ComboBox racaComboBox;
+        private System.Windows.Forms.TextBox racaTextBox;
     }
 }

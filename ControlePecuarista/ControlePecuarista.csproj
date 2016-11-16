@@ -115,11 +115,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\Controls\CombustivelUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\CombustivelUserControl.Designer.cs">
+      <DependentUpon>CombustivelUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Controls\GastosUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\Controls\GastosUserControl.Designer.cs">
       <DependentUpon>GastosUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Controls\PastagemUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\Controls\PastagemUserControl.Designer.cs">
+      <DependentUpon>PastagemUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Controls\TipoPastageUserControl.cs">
       <SubType>UserControl</SubType>
@@ -133,6 +145,13 @@
     <Compile Include="src\Controls\UnidadeAnimalUserControl.Designer.cs">
       <DependentUpon>UnidadeAnimalUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\GeradorRelatorioWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\GeradorRelatorioWindow.Designer.cs">
+      <DependentUpon>GeradorRelatorioWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\HTMLBuilder.cs" />
     <Compile Include="src\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,14 +180,23 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\CombustivelUserControl.resx">
+      <DependentUpon>CombustivelUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\GastosUserControl.resx">
       <DependentUpon>GastosUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\PastagemUserControl.resx">
+      <DependentUpon>PastagemUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\TipoPastageUserControl.resx">
       <DependentUpon>TipoPastageUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\UnidadeAnimalUserControl.resx">
       <DependentUpon>UnidadeAnimalUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\GeradorRelatorioWindow.resx">
+      <DependentUpon>GeradorRelatorioWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -219,10 +247,6 @@
     <ProjectReference Include="..\DataPersistent\DataPersistent.csproj">
       <Project>{52eab28b-43b6-4eb9-9918-87eb7fa5e041}</Project>
       <Name>DataPersistent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GeradorRelatorio\GeradorRelatorio.csproj">
-      <Project>{a4d49c7a-8871-4639-a766-078061854029}</Project>
-      <Name>GeradorRelatorio</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

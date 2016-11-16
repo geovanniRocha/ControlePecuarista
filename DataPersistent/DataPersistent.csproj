@@ -103,15 +103,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Combustivel.cs" />
-    <Compile Include="Gastos.cs" />
-    <Compile Include="IProvideSQL.cs" />
-    <Compile Include="Maquinario.cs" />
-    <Compile Include="Pastagem.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="src\Data\Combustivel.cs" />
+    <Compile Include="src\Data\Gastos.cs" />
+    <Compile Include="src\HTMLBuilder.cs" />
+    <Compile Include="src\Data\IProvideSQL.cs" />
+    <Compile Include="src\Data\Maquinario.cs" />
+    <Compile Include="src\Data\Pastagem.cs" />
+    <Compile Include="src\Data\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TipoPastagem.cs" />
-    <Compile Include="UnidadeAnimal.cs" />
+    <Compile Include="src\Data\TipoPastagem.cs" />
+    <Compile Include="src\Data\UnidadeAnimal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

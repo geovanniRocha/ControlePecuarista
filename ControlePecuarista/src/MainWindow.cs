@@ -4,6 +4,7 @@ using DebugDLL;
 using GeradorRelatorio;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Forms;
 using ControlePecuarista.src.Controls;
 
@@ -33,6 +34,7 @@ namespace ControlePecuarista
             //set function to Action
             updateTreeNodesAction = updateTreeNodes;
             iniciarToolStripMenuItem.Enabled = false;
+            gerarRelatorioToolStripMenuItem.Enabled = false;
         }
 
         private void initDaos()
@@ -136,44 +138,50 @@ namespace ControlePecuarista
             treeView2.Nodes.Add(unidadeAnimalNode);
 
             #endregion unidadeAnimalNode
+
+        
         }
 
         private void treeView2_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Parent == null) return;
+
             splitContainer3.Panel2.Controls.Clear();
 
-            switch (e.Node.Parent.Text)
-            {
-                case @"Gastos":
-                    selectedUserControl = new GastosUserControl(e.Node.Name);
-                    break;
+            if (e.Node.Parent == null)
+                DebugDLL.Debug.debug(e.Node.Text);
 
-                case @"Maquinario":
+            if (e.Node.Parent != null)
+                switch (e.Node.Parent.Text)
+                {
+                    case @"Gastos":
+                        selectedUserControl = new GastosUserControl(e.Node.Name);
+                        break;
 
-                    selectedUserControl = new MaquinarioUserControl(e.Node.Name);
-                    break;
+                    case @"Maquinario":
 
-                case @"Combustivel":
+                        selectedUserControl = new MaquinarioUserControl(e.Node.Name);
+                        break;
 
-                    break;
+                    case @"Combustivel":
+                        selectedUserControl = new CombustivelUserControl(e.Node.Name);
+                        break;
 
-                case @"Pastagem":
+                    case @"Pastagem":
+                        selectedUserControl = new PastagemUserControl(e.Node.Name);
+                        break;
 
-                    break;
+                    case @"Tipo de Pastagem":
+                        selectedUserControl = new TipoPastageUserControl(e.Node.Name);
+                        break;
 
-                case @"Tipo de Pastagem":
-                    selectedUserControl = new TipoPastageUserControl(e.Node.Name);
-                    break;
-
-                case @"Unidade Animal":
-                    selectedUserControl = new UnidadeAnimalUserControl(e.Node.Name);
-                    break;
-            }
+                    case @"Unidade Animal":
+                        selectedUserControl = new UnidadeAnimalUserControl(e.Node.Name);
+                        break;
+                }
             if (selectedUserControl != null)
             {
                 selectedUserControl.Size = splitContainer3.Panel2.Size;
-               splitContainer3.Panel2.Controls.Add(selectedUserControl);
+                splitContainer3.Panel2.Controls.Add(selectedUserControl);
 
             }
 
@@ -204,6 +212,7 @@ namespace ControlePecuarista
             initDaos();
             updateTreeNodes();
             iniciarToolStripMenuItem.Enabled = true;
+            gerarRelatorioToolStripMenuItem.Enabled = true;
         }
 
         private void novoToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -232,15 +241,9 @@ namespace ControlePecuarista
 
 
 
-        private void gerarRelatorioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var a = new HTMLBuilder();
-            a.addButton("Maquinarios");
-            a.initDiv("Maquinarios");
-            a.addMaquinariosTable(maquinarioDao.selectEverything());
-            a.endDiv();
-            a.css();
-            Debug.warning(a.toHTML());
+        private void gerarRelatorioToolStripMenuItem_Click(object sender, EventArgs e) {
+            var a = new GeradorRelatorioWindow();
+            a.Show(this);
         }
 
         #region Adicionar DropDow
@@ -268,6 +271,35 @@ namespace ControlePecuarista
             splitContainer3.Panel2.Controls.Add(temp);
             temp.Size = splitContainer3.Panel2.Size;
         }
+        private void PastagemAdicionarButton(object sender, EventArgs e)
+        {
+            var temp = new PastagemUserControl();
+            splitContainer3.Panel2.Controls.Clear();
+            splitContainer3.Panel2.Controls.Add(temp);
+            temp.Size = splitContainer3.Panel2.Size;
+        }
+        private void CombustivelAdicionar(object sender, EventArgs e)
+        {
+            var temp = new CombustivelUserControl();
+            splitContainer3.Panel2.Controls.Clear();
+            splitContainer3.Panel2.Controls.Add(temp);
+            temp.Size = splitContainer3.Panel2.Size;
+        }
+        private void PastagemAdicionar(object sender, EventArgs e)
+        {
+            var temp = new PastagemUserControl();
+            splitContainer3.Panel2.Controls.Clear();
+            splitContainer3.Panel2.Controls.Add(temp);
+            temp.Size = splitContainer3.Panel2.Size;
+        }
+
+        private void TipoPastagemAdicionar(object sender, EventArgs e)
+        {
+            var temp = new TipoPastageUserControl();
+            splitContainer3.Panel2.Controls.Clear();
+            splitContainer3.Panel2.Controls.Add(temp);
+            temp.Size = splitContainer3.Panel2.Size;
+        }
         #endregion
 
         private void menuStrip1_Resize(object sender, EventArgs e)
@@ -275,6 +307,8 @@ namespace ControlePecuarista
             if (selectedUserControl != null)
                 selectedUserControl.Size = splitContainer3.Panel2.Size;
         }
+
+
     }
 
     #endregion Form Functions Handler

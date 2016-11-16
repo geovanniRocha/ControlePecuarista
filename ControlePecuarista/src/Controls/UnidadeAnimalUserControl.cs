@@ -33,9 +33,8 @@ namespace ControlePecuarista.src.Controls
                 uaSaidaTextBox.Text = currentUnidadeAnimal.uaSaida.ToString();
                 dataEntradaDatePicker.Value = DateTime.FromFileTimeUtc(currentUnidadeAnimal.dataEntrada);
                 dataSaidaDatePicker.Value = DateTime.FromFileTimeUtc(currentUnidadeAnimal.dataSaida);
-                racaComboBox.SelectedText = currentUnidadeAnimal.raca.ToString();
+                racaTextBox.Text = currentUnidadeAnimal.raca;
                 valorUaTextBox.Text = currentUnidadeAnimal.valor.ToString();
-                //racaComboBox.DataSource = a; //TODO olhar maquinarios.Combustiveis para atribuir certo a lista
 
             }
 
@@ -43,7 +42,7 @@ namespace ControlePecuarista.src.Controls
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            
+
             if (currentID != -1)
             {
                 currentUnidadeAnimal.nome = nomeTextBox.Text;
@@ -52,14 +51,31 @@ namespace ControlePecuarista.src.Controls
                 currentUnidadeAnimal.uaEntrada = float.Parse(uaEntradaTextBox.Text);
                 currentUnidadeAnimal.uaSaida = float.Parse(uaSaidaTextBox.Text);
                 currentUnidadeAnimal.valor = float.Parse(valorUaTextBox.Text);
-                currentUnidadeAnimal.raca = int.Parse(racaComboBox.SelectedText); //TODO mudar para uma lista
-                //currentUnidadeAnimalDao.update(currentUnidadeAnimal);
+                currentUnidadeAnimal.raca = racaTextBox.Text;
+                currentUnidadeAnimalDao.update(currentUnidadeAnimal);
             }
+            else
+            {
+                currentUnidadeAnimal = new UnidadeAnimal(
+                    nomeTextBox.Text,
+                    float.Parse(uaEntradaTextBox.Text),
+                    float.Parse(uaSaidaTextBox.Text),
+                    dataEntradaDatePicker.Value.ToFileTimeUtc(),
+                    dataSaidaDatePicker.Value.ToFileTimeUtc(),
+                    racaTextBox.Text,
+                    float.Parse(valorUaTextBox.Text)
+                );
+                currentUnidadeAnimalDao.insert(currentUnidadeAnimal);
+
+
+            }
+            MainWindow.updateTreeNodesAction();
+            MessageBox.Show(this, "Unidade Animal adicionada com sucesso.");
             Dispose();
 
         }
 
-        
-        
+
+
     }
 }

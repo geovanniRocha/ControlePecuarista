@@ -39,11 +39,45 @@ namespace DataPersistent
         }
 
         public override Pastagem selectById(int id) {
-            throw new NotImplementedException();
+            string sql = $"select id, nome,areautil, IDTipoPastagem from pastagem where id ='{id}';";
+            Pastagem temp = null;
+            using (var c = new SQLiteConnection(connection))
+            {
+                c.Open();
+                using (var cmd = new SQLiteCommand(sql, c))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            temp = new Pastagem(reader.GetInt32(0),reader.GetString(1), reader.GetFloat(2), reader.GetInt32(3));
+                        }
+                    }
+                }
+            }
+            return temp;
         }
 
         public override List<Pastagem> selectEverything() {
-            throw new NotImplementedException();
+            var tempList = new List<Pastagem>();
+            string sql = $"select id, nome,areautil, IDTipoPastagem from pastagem;";
+            Maquinario temp = null;
+            using (var c = new SQLiteConnection(connection))
+            {
+                c.Open();
+                using (var cmd = new SQLiteCommand(sql, c))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tempList.Add(new Pastagem(reader.GetInt32(0), reader.GetString(1), reader.GetFloat(2), reader.GetInt32(3)));
+                        }
+                    }
+                }
+            }
+            return tempList;
         }
 
         public Dictionary<int, string> selectIdAndString() {

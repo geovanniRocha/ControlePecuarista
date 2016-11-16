@@ -15,7 +15,7 @@ namespace DataPersistent
 
         public override void update(TipoPastagem data) {
             var sql = $"UPDATE tipoPastagem SET Nome = '{data.nome}' WHERE id='{data.id}';";
-            DebugDLL.Debug.error(sql);
+           
             base.runSQLWithOutReturn(sql);
         }
 
@@ -54,7 +54,24 @@ namespace DataPersistent
         }
 
         public override List<TipoPastagem> selectEverything() {
-            throw new NotImplementedException();
+            var tempList = new List<TipoPastagem>();
+            string sql = $"select id, nome from tipoPastagem;";
+            Maquinario temp = null;
+            using (var c = new SQLiteConnection(connection))
+            {
+                c.Open();
+                using (var cmd = new SQLiteCommand(sql, c))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tempList.Add(new TipoPastagem(reader.GetInt32(0), reader.GetString(1)));
+                        }
+                    }
+                }
+            }
+            return tempList;
         }
 
         public Dictionary<int, string> selectIdAndString() {

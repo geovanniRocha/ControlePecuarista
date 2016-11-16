@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
+using DataPersistent;
+using GeradorRelatorio;
 
 namespace ControlePecuarista
 {
@@ -11,6 +14,10 @@ namespace ControlePecuarista
         /// TODO GERAR RELATORIO
         [STAThread]
         private static void Main() {
+
+            
+
+
 
             Application.Run(new MainWindow());
         }

@@ -43,6 +43,9 @@
             this.gerarRelatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.tipoPastagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.combustivelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pastagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -130,7 +133,10 @@
             this.iniciarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.novoToolStripMenuItem,
             this.gastoToolStripMenuItem,
-            this.unidadeAnimalToolStripMenuItem});
+            this.unidadeAnimalToolStripMenuItem,
+            this.tipoPastagemToolStripMenuItem,
+            this.combustivelToolStripMenuItem,
+            this.pastagemToolStripMenuItem});
             this.iniciarToolStripMenuItem.Name = "iniciarToolStripMenuItem";
             this.iniciarToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.iniciarToolStripMenuItem.Text = "Adicionar";
@@ -175,6 +181,27 @@
             this.openFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
             // 
+            // tipoPastagemToolStripMenuItem
+            // 
+            this.tipoPastagemToolStripMenuItem.Name = "tipoPastagemToolStripMenuItem";
+            this.tipoPastagemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.tipoPastagemToolStripMenuItem.Text = "Tipo Pastagem";
+            this.tipoPastagemToolStripMenuItem.Click += new System.EventHandler(this.TipoPastagemAdicionar);
+            // 
+            // combustivelToolStripMenuItem
+            // 
+            this.combustivelToolStripMenuItem.Name = "combustivelToolStripMenuItem";
+            this.combustivelToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.combustivelToolStripMenuItem.Text = "Combustivel";
+            this.combustivelToolStripMenuItem.Click += new System.EventHandler(this.CombustivelAdicionar);
+            // 
+            // pastagemToolStripMenuItem
+            // 
+            this.pastagemToolStripMenuItem.Name = "pastagemToolStripMenuItem";
+            this.pastagemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.pastagemToolStripMenuItem.Text = "Pastagem";
+            this.pastagemToolStripMenuItem.Click += new System.EventHandler(this.PastagemAdicionar);
+            // 
             // MainWindow
             // 
             this.AutoSize = true;
@@ -212,6 +239,9 @@
         private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem gerarRelatorioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tipoPastagemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem combustivelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pastagemToolStripMenuItem;
     }
 }
 

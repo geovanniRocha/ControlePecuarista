@@ -14,7 +14,6 @@ namespace DataPersistent
         public override void insert(Maquinario data) {
             var sql = $"INSERT INTO maquinarios (nome,descricao,combustivel_id)" +
                       $"VALUES('{data.nome}', '{data.descricao}', '{data.combustivel_id}'); ";
-            DebugDLL.Debug.debug(sql);
             runSQLWithOutReturn(sql);
         }
 

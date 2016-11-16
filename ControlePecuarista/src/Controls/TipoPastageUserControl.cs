@@ -11,7 +11,8 @@ using DataPersistent;
 
 namespace ControlePecuarista.src.Controls
 {
-    public partial class TipoPastageUserControl : UserControl {
+    public partial class TipoPastageUserControl : UserControl
+    {
         private TipoPastagem currentTipoPastagem;
         private TipoPastagemDAO tipoPastagemDao = null;
         private int currentID;
@@ -39,7 +40,13 @@ namespace ControlePecuarista.src.Controls
                 currentTipoPastagem.nome = textBox1.Text;
                 tipoPastagemDao.update(currentTipoPastagem);
             }
+            else
+            {
+                currentTipoPastagem = new TipoPastagem(textBox1.Text);
+                tipoPastagemDao.insert(currentTipoPastagem);
+            }
             MainWindow.updateTreeNodesAction();
+            MessageBox.Show(this, "Tipo de pastagem adicionado com sucesso.");
             Dispose();
         }
     }

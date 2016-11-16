@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPersistent", "DataPersistent\DataPersistent.csproj", "{52EAB28B-43B6-4EB9-9918-87EB7FA5E041}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorRelatorio", "GeradorRelatorio\GeradorRelatorio.csproj", "{A4D49C7A-8871-4639-A766-078061854029}"
+	ProjectSection(ProjectDependencies) = postProject
+		{52EAB28B-43B6-4EB9-9918-87EB7FA5E041} = {52EAB28B-43B6-4EB9-9918-87EB7FA5E041}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

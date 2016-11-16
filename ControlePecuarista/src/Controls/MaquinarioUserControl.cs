@@ -32,7 +32,7 @@ namespace ControlePecuarista.src
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (currentID != -1) // Update
+            if (currentID != -1)
             {
                 currentMaquinario.nome = textBox1.Text;
                 currentMaquinario.descricao = textBox2.Text;
@@ -45,11 +45,11 @@ namespace ControlePecuarista.src
                 currentMaquinario.nome = textBox1.Text;
                 currentMaquinario.descricao = textBox2.Text;
                 currentMaquinario.combustivel_id = comboBox1.SelectedIndex + 1;
-                DebugDLL.Debug.debug("select index:" + comboBox1.SelectedIndex);
                 maquinarioDao.insert(currentMaquinario);
             }
 
             MainWindow.updateTreeNodesAction();
+            MessageBox.Show(this, "Maquinario adicionado com sucesso.");
             Dispose();
         }
     }
