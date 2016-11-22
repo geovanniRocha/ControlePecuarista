@@ -1,35 +1,26 @@
-﻿using System;
+﻿using DataPersistent;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DataPersistent;
 
 namespace ControlePecuarista.src.Controls
 {
-    public partial class GastosUserControl : UserControl
-    {
-        private int currentID;
-        private GastosDAO currentGastosDao;
+    public partial class GastosUserControl : UserControl {
+        private readonly CombustiveisDAO combustiveisDao;
         private Gastos currentGastos;
+        private readonly GastosDAO currentGastosDao;
+        private readonly int currentID;
+        private GastosDAO gastosDao;
+        private readonly MaquinarioDAO maquinarioDao;
+        private readonly PastagemDAO pastagemDao;
 
         private List<string> referentList;
-        private MaquinarioDAO maquinarioDao;
-        private UnidadeAnimalDAO unidadeAnimalDao;
-        private CombustiveisDAO combustiveisDao;
-        private PastagemDAO pastagemDao;
+        private readonly UnidadeAnimalDAO unidadeAnimalDao;
 
-
-
-
-
-
-        public GastosUserControl(string id = null)
-        {
-
-
-
+        public GastosUserControl(string id = null) {
             InitializeComponent();
+
             currentID = -1;
             currentGastosDao = new GastosDAO(MainWindow.currentPath);
             tipoComboBox.DataSource = Enum.GetValues(typeof(GastosType));
@@ -38,8 +29,9 @@ namespace ControlePecuarista.src.Controls
             unidadeAnimalDao = new UnidadeAnimalDAO(MainWindow.currentPath);
             combustiveisDao = new CombustiveisDAO(MainWindow.currentPath);
             pastagemDao = new PastagemDAO(MainWindow.currentPath);
-
-
+            gastosDao = new GastosDAO(MainWindow.currentPath);
+            tipoComboBox.SelectedIndex = -1;
+            button2.Enabled = false;
             if (id != null)
             {
                 currentID = int.Parse(id);
@@ -47,70 +39,85 @@ namespace ControlePecuarista.src.Controls
                 nomeTextBox.Text = currentGastos.nome;
                 tipoComboBox.SelectedIndex = (int) currentGastos.idCategoria;
                 refreshList();
-                referenteComboBox.SelectedIndex = (int) currentGastos.idRef - 1;
+                if (tipoComboBox.SelectedIndex > 0) referenteComboBox.SelectedIndex = currentGastos.idRef - 1;
+                else referenteComboBox.SelectedIndex = -1;
+                button2.Enabled = true;
             }
         }
 
-
-        private void selectedIndex(object sender, EventArgs e)
-        {
+        private void selectedIndex(object sender, EventArgs e) {
             refreshList();
-
         }
 
-        void refreshList() {
+        private void refreshList() {
+            if (tipoComboBox.SelectedIndex == -1) return;
             switch (tipoComboBox.SelectedIndex)
             {
                 case 0:
-                   // DebugDLL.Debug.debug("Maq");
+                    // DebugDLL.Debug.debug("Maq");
                     referentList = maquinarioDao.selectIdAndString().Values.ToList();
                     break;
 
                 case 1:
-                  //  DebugDLL.Debug.debug("Comb");
+                    //  DebugDLL.Debug.debug("Comb");
                     referentList = combustiveisDao.selectIdAndString().Values.ToList();
                     break;
 
                 case 2:
-                   // DebugDLL.Debug.debug("Past");
+                    // DebugDLL.Debug.debug("Past");
                     referentList = pastagemDao.selectIdAndString().Values.ToList();
                     break;
 
                 case 3:
-                   // DebugDLL.Debug.debug("UA");
+                    // DebugDLL.Debug.debug("UA");
                     referentList = unidadeAnimalDao.selectIdAndString().Values.ToList();
                     break;
 
                 case 4:
-                   // DebugDLL.Debug.debug("Outros");
+                    // DebugDLL.Debug.debug("Outros");
                     referentList = new List<string>();
                     referentList.Add("Outros");
                     break;
             }
             referenteComboBox.DataSource = referentList;
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-          throw new Exception();
-            if (currentID != -1)
+        private void button1_Click(object sender, EventArgs e) {
+            if (string.IsNullOrEmpty(nomeTextBox.Text))
             {
-              currentGastos.nome = nomeTextBox.Text ;
-              currentGastos.idCategoria = tipoComboBox.SelectedIndex ;
-              currentGastos.idRef = referenteComboBox.SelectedIndex;
-              currentGastosDao.update(currentGastos);
+                MessageBox.Show(this, "Insira um nome para identificar o gasto.");
             }
-            else{
-              currentGastos = new Gastos();
-              currentGastos.nome = nomeTextBox.Text ;
-              currentGastos.idCategoria = tipoComboBox.SelectedIndex ;
-              currentGastos.idRef = referenteComboBox.SelectedIndex;
-              currentGastosDao.insert(currentGastos);
+            else
+            {
+                //throw new Exception();
+                if (currentID != -1)
+                {
+                    currentGastos.nome = nomeTextBox.Text;
+                    currentGastos.idCategoria = (GastosType) tipoComboBox.SelectedIndex;
+                    currentGastos.idRef = referenteComboBox.SelectedIndex + 1;
+                    currentGastos.descricao = descricaoTextBox3.Text;
+                    currentGastosDao.update(currentGastos);
+                }
+                else
+                {
+                    currentGastos = new Gastos();
+                    currentGastos.nome = nomeTextBox.Text;
+                    currentGastos.idCategoria = (GastosType) tipoComboBox.SelectedIndex;
+                    currentGastos.idRef = referenteComboBox.SelectedIndex + 1;
+                    currentGastos.descricao = descricaoTextBox3.Text;
+                    currentGastosDao.insert(currentGastos);
+                }
+                MainWindow.updateTreeNodesAction();
+                MessageBox.Show(this, "Gasto adicionado com sucesso.");
+                Dispose();
             }
-            MainWindow.updateTreeNodesAction();
-            MessageBox.Show(this, "Pastagem adicionada com sucesso.");
-            Dispose();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DatalheGastosWindow windows =  new DatalheGastosWindow(currentID);
+            windows.Show();
+            
         }
     }
 }

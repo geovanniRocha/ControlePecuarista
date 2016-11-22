@@ -243,7 +243,7 @@ namespace ControlePecuarista
 
         private void gerarRelatorioToolStripMenuItem_Click(object sender, EventArgs e) {
             var a = new GeradorRelatorioWindow();
-            a.Show(this);
+            a.Show(MainWindow.ActiveForm);
         }
 
         #region Adicionar DropDow
@@ -307,8 +307,6 @@ namespace ControlePecuarista
             if (selectedUserControl != null)
                 selectedUserControl.Size = splitContainer3.Panel2.Size;
         }
-
-
     }
 
     #endregion Form Functions Handler

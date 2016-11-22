@@ -15,7 +15,7 @@ namespace ControlePecuarista
         [STAThread]
         private static void Main() {
 
-            
+            //TODO ver por que quando insere gasto o valor é ZERO(0)           
 
 
 

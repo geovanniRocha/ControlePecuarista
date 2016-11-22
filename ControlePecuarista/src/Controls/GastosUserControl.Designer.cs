@@ -39,6 +39,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.descricaoTextBox3 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +57,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nomeTextBox.Location = new System.Drawing.Point(96, 12);
             this.nomeTextBox.Name = "nomeTextBox";
-            this.nomeTextBox.Size = new System.Drawing.Size(395, 20);
+            this.nomeTextBox.Size = new System.Drawing.Size(439, 20);
             this.nomeTextBox.TabIndex = 1;
             // 
             // label2
@@ -75,7 +76,7 @@
             this.tipoComboBox.FormattingEnabled = true;
             this.tipoComboBox.Location = new System.Drawing.Point(96, 38);
             this.tipoComboBox.Name = "tipoComboBox";
-            this.tipoComboBox.Size = new System.Drawing.Size(395, 21);
+            this.tipoComboBox.Size = new System.Drawing.Size(439, 21);
             this.tipoComboBox.TabIndex = 3;
             this.tipoComboBox.SelectedIndexChanged += new System.EventHandler(this.selectedIndex);
             // 
@@ -95,7 +96,7 @@
             this.referenteComboBox.FormattingEnabled = true;
             this.referenteComboBox.Location = new System.Drawing.Point(96, 65);
             this.referenteComboBox.Name = "referenteComboBox";
-            this.referenteComboBox.Size = new System.Drawing.Size(395, 21);
+            this.referenteComboBox.Size = new System.Drawing.Size(439, 21);
             this.referenteComboBox.TabIndex = 5;
             // 
             // label4
@@ -113,7 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.valorTextBox.Location = new System.Drawing.Point(96, 92);
             this.valorTextBox.Name = "valorTextBox";
-            this.valorTextBox.Size = new System.Drawing.Size(395, 20);
+            this.valorTextBox.Size = new System.Drawing.Size(439, 20);
             this.valorTextBox.TabIndex = 7;
             // 
             // label5
@@ -127,27 +128,42 @@
             // 
             // descricaoTextBox3
             // 
+            this.descricaoTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.descricaoTextBox3.Location = new System.Drawing.Point(23, 147);
             this.descricaoTextBox3.Multiline = true;
             this.descricaoTextBox3.Name = "descricaoTextBox3";
-            this.descricaoTextBox3.Size = new System.Drawing.Size(468, 177);
+            this.descricaoTextBox3.Size = new System.Drawing.Size(512, 226);
             this.descricaoTextBox3.TabIndex = 9;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(416, 368);
+            this.button1.Location = new System.Drawing.Point(460, 379);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
+            this.button1.Text = "Salvar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(379, 379);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Detalhes";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // GastosUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.descricaoTextBox3);
             this.Controls.Add(this.label5);
@@ -160,7 +176,7 @@
             this.Controls.Add(this.nomeTextBox);
             this.Controls.Add(this.label1);
             this.Name = "GastosUserControl";
-            this.Size = new System.Drawing.Size(499, 394);
+            this.Size = new System.Drawing.Size(543, 405);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +195,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox descricaoTextBox3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

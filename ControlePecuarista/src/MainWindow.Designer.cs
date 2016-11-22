@@ -40,12 +40,12 @@
             this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gastoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unidadeAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerarRelatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tipoPastagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combustivelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pastagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerarRelatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -162,25 +162,6 @@
             this.unidadeAnimalToolStripMenuItem.Text = "Unidade Animal";
             this.unidadeAnimalToolStripMenuItem.Click += new System.EventHandler(this.UnidadeAnimalAdicionar);
             // 
-            // gerarRelatorioToolStripMenuItem
-            // 
-            this.gerarRelatorioToolStripMenuItem.Name = "gerarRelatorioToolStripMenuItem";
-            this.gerarRelatorioToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
-            this.gerarRelatorioToolStripMenuItem.Text = "Gerar Relatorio";
-            this.gerarRelatorioToolStripMenuItem.Click += new System.EventHandler(this.gerarRelatorioToolStripMenuItem_Click);
-            // 
-            // newFileDialog
-            // 
-            this.newFileDialog.DefaultExt = "cdp";
-            this.newFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
-            this.newFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.newFileOk);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog";
-            this.openFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
-            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
-            // 
             // tipoPastagemToolStripMenuItem
             // 
             this.tipoPastagemToolStripMenuItem.Name = "tipoPastagemToolStripMenuItem";
@@ -201,6 +182,25 @@
             this.pastagemToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.pastagemToolStripMenuItem.Text = "Pastagem";
             this.pastagemToolStripMenuItem.Click += new System.EventHandler(this.PastagemAdicionar);
+            // 
+            // gerarRelatorioToolStripMenuItem
+            // 
+            this.gerarRelatorioToolStripMenuItem.Name = "gerarRelatorioToolStripMenuItem";
+            this.gerarRelatorioToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.gerarRelatorioToolStripMenuItem.Text = "Gerar Relatorio";
+            this.gerarRelatorioToolStripMenuItem.Click += new System.EventHandler(this.gerarRelatorioToolStripMenuItem_Click);
+            // 
+            // newFileDialog
+            // 
+            this.newFileDialog.DefaultExt = "cdp";
+            this.newFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
+            this.newFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.newFileOk);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            this.openFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
             // 
             // MainWindow
             // 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace DataPersistent
@@ -14,7 +13,7 @@ namespace DataPersistent
         public override void insert(Gastos data) {
             var sql =
                 $" INSERT INTO gastos (Nome,IDCategoria,IDRef, Valor, Descricao) VALUES('{data.nome}'," +
-                $" '{(int) data.idCategoria}', '{data.idRef}', '{data.valor}, '{data.descricao}); ";
+                $" '{(int) data.idCategoria}', '{data.idRef}', '{data.valor}', '{data.descricao}'); ";
             runSQLWithOutReturn(sql);
         }
 
@@ -29,6 +28,27 @@ namespace DataPersistent
         public override void delete(Gastos data) {
             var sql = $"DELETE from gastos where id='{data.id}'";
             runSQLWithOutReturn(sql);
+        }
+
+        public float selectSumGastosById(int id) {
+            var sql =
+                $"select sum(g.Valor) from gastos g inner join UnidadeAnimal ua on(g.IDRef=ua.id)  where g.IDCategoria=3 and ua.ID = {id}";
+            float sumGasto = 0;
+            using (var c = new SQLiteConnection(connection))
+            {
+                c.Open();
+                using (var cmd = new SQLiteCommand(sql, c))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sumGasto = reader.GetFloat(0);
+                        }
+                    }
+                }
+            }
+            return sumGasto;
         }
 
         public override void createTable() {
@@ -72,7 +92,7 @@ namespace DataPersistent
 
         public override List<Gastos> selectEverything() {
             string sql = $"select id,Nome,IDCategoria,IDRef, Valor, Descricao from Gastos;";
-            List<Gastos> temp = new List<Gastos>();
+            var temp = new List<Gastos>();
             using (var c = new SQLiteConnection(connection))
             {
                 c.Open();
@@ -105,7 +125,11 @@ namespace DataPersistent
     }
 
     public class Gastos {
-        public Gastos(){}
+
+        public Gastos()
+        {
+
+        }
 
         public Gastos(string nome, int idCategoria, int idRef, float valor, string descricao) {
             this.nome = nome;

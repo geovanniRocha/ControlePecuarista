@@ -14,6 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>D:\Codes\C#\Deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,10 +24,10 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <MapFileExtensions>false</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -58,7 +59,7 @@
     <ManifestKeyFile>ControlePecuarista_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -121,6 +122,12 @@
     <Compile Include="src\Controls\CombustivelUserControl.Designer.cs">
       <DependentUpon>CombustivelUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Controls\DatalheGastosWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Controls\DatalheGastosWindow.Designer.cs">
+      <DependentUpon>DatalheGastosWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Controls\GastosUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\CombustivelUserControl.resx">
       <DependentUpon>CombustivelUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Controls\DatalheGastosWindow.resx">
+      <DependentUpon>DatalheGastosWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Controls\GastosUserControl.resx">
       <DependentUpon>GastosUserControl.cs</DependentUpon>

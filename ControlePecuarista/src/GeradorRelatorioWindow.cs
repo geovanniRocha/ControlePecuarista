@@ -23,7 +23,7 @@ namespace ControlePecuarista.src
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            saveFileDialog1.ShowDialog(this);
+            saveFileDialog1.ShowDialog(MainWindow.ActiveForm);
         }
 
         void gerador() {
