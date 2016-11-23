@@ -30,26 +30,7 @@ namespace DataPersistent
             runSQLWithOutReturn(sql);
         }
 
-        public float selectSumGastosById(int id) {
-            var sql =
-                $"select sum(g.Valor) from gastos g inner join UnidadeAnimal ua on(g.IDRef=ua.id)  where g.IDCategoria=3 and ua.ID = {id}";
-            float sumGasto = 0;
-            using (var c = new SQLiteConnection(connection))
-            {
-                c.Open();
-                using (var cmd = new SQLiteCommand(sql, c))
-                {
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            sumGasto = reader.GetFloat(0);
-                        }
-                    }
-                }
-            }
-            return sumGasto;
-        }
+       
 
         public override void createTable() {
             var sql = @"  CREATE TABLE gastos (
@@ -91,7 +72,7 @@ namespace DataPersistent
         }
 
         public override List<Gastos> selectEverything() {
-            string sql = $"select id,Nome,IDCategoria,IDRef, Valor, Descricao from Gastos;";
+            string sql = $"select id,Nome,IDCategoria,IDRef, Valor, Descricao from Gastos order by idRef;";
             var temp = new List<Gastos>();
             using (var c = new SQLiteConnection(connection))
             {
@@ -116,6 +97,9 @@ namespace DataPersistent
             }
             return temp;
         }
+
+
+       
 
         public Dictionary<int, string> selectIdAndString() {
             string sql = $"select id,Nome,IDCategoria,IDRef, Valor, Descricao from Gastos;";
@@ -165,12 +149,20 @@ namespace DataPersistent
             this.descricao = descricao;
         }
 
+        public Gastos(string tempNome, string tempDescricao, float valor) {
+            this.nome= tempNome;
+            this.descricao = tempDescricao;
+            this.valor = valor;
+        }
+
         public int id { get; }
         public string nome { get; set; }
         public GastosType idCategoria { get; set; }
         public int idRef { get; set; }
         public float valor { get; set; }
         public string descricao { get; set; }
+        public string nomeRef { get; set; }
+        public string nomeCategoria { get; set; }
     }
 
     public enum GastosType {

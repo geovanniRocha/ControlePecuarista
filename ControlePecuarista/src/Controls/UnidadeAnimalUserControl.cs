@@ -75,7 +75,11 @@ namespace ControlePecuarista.src.Controls
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DatalheGastosWindow windows = new DatalheGastosWindow(currentID);
+            windows.Show();
 
-
+        }
     }
 }

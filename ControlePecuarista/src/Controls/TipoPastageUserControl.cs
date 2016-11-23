@@ -35,8 +35,11 @@ namespace ControlePecuarista.src.Controls
         {
             if (currentID != -1) // Update
             {
+#if DEBUG
+
                 if (tipoPastagemDao == null) DebugDLL.Debug.info("TipoPastagem Null");
-                if (currentTipoPastagem == null) DebugDLL.Debug.info("currentTipoPastagem Null");
+                if (currentTipoPastagem == null) DebugDLL.Debug.info("currentTipoPastagem Null"); 
+#endif
                 currentTipoPastagem.nome = textBox1.Text;
                 tipoPastagemDao.update(currentTipoPastagem);
             }

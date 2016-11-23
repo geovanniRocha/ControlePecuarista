@@ -31,7 +31,7 @@ namespace ControlePecuarista.src.Controls
             pastagemDao = new PastagemDAO(MainWindow.currentPath);
             gastosDao = new GastosDAO(MainWindow.currentPath);
             tipoComboBox.SelectedIndex = -1;
-            button2.Enabled = false;
+           
             if (id != null)
             {
                 currentID = int.Parse(id);
@@ -41,7 +41,8 @@ namespace ControlePecuarista.src.Controls
                 refreshList();
                 if (tipoComboBox.SelectedIndex > 0) referenteComboBox.SelectedIndex = currentGastos.idRef - 1;
                 else referenteComboBox.SelectedIndex = -1;
-                button2.Enabled = true;
+                valorTextBox.Text = currentGastos.valor.ToString();
+                
             }
         }
 
@@ -96,6 +97,7 @@ namespace ControlePecuarista.src.Controls
                     currentGastos.idCategoria = (GastosType) tipoComboBox.SelectedIndex;
                     currentGastos.idRef = referenteComboBox.SelectedIndex + 1;
                     currentGastos.descricao = descricaoTextBox3.Text;
+                    currentGastos.valor = int.Parse(valorTextBox.Text);
                     currentGastosDao.update(currentGastos);
                 }
                 else
@@ -105,6 +107,7 @@ namespace ControlePecuarista.src.Controls
                     currentGastos.idCategoria = (GastosType) tipoComboBox.SelectedIndex;
                     currentGastos.idRef = referenteComboBox.SelectedIndex + 1;
                     currentGastos.descricao = descricaoTextBox3.Text;
+                    currentGastos.valor = int.Parse(valorTextBox.Text);
                     currentGastosDao.insert(currentGastos);
                 }
                 MainWindow.updateTreeNodesAction();
@@ -113,11 +116,6 @@ namespace ControlePecuarista.src.Controls
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DatalheGastosWindow windows =  new DatalheGastosWindow(currentID);
-            windows.Show();
-            
-        }
+        
     }
 }

@@ -43,6 +43,7 @@
             this.dataEntradaDatePicker = new System.Windows.Forms.DateTimePicker();
             this.dataSaidaDatePicker = new System.Windows.Forms.DateTimePicker();
             this.racaTextBox = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -184,10 +185,22 @@
             this.racaTextBox.Size = new System.Drawing.Size(391, 20);
             this.racaTextBox.TabIndex = 17;
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(343, 259);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Detalhes";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // UnidadeAnimalUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.racaTextBox);
             this.Controls.Add(this.dataSaidaDatePicker);
             this.Controls.Add(this.dataEntradaDatePicker);
@@ -227,5 +240,6 @@
         private System.Windows.Forms.DateTimePicker dataEntradaDatePicker;
         private System.Windows.Forms.DateTimePicker dataSaidaDatePicker;
         private System.Windows.Forms.TextBox racaTextBox;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="src\Data\Combustivel.cs" />
     <Compile Include="src\Data\Gastos.cs" />
+    <Compile Include="src\Data\Misc.cs" />
     <Compile Include="src\HTMLBuilder.cs" />
     <Compile Include="src\Data\IProvideSQL.cs" />
     <Compile Include="src\Data\Maquinario.cs" />

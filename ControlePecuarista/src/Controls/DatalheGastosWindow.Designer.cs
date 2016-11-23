@@ -32,7 +32,7 @@
             this.arrobaSaidaTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.detalhesRichTextBox = new System.Windows.Forms.RichTextBox();
             this.totalGasto = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -43,7 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.arrobaEntradaTextBox.Location = new System.Drawing.Point(152, 17);
             this.arrobaEntradaTextBox.Name = "arrobaEntradaTextBox";
-            this.arrobaEntradaTextBox.Size = new System.Drawing.Size(120, 20);
+            this.arrobaEntradaTextBox.Size = new System.Drawing.Size(149, 20);
             this.arrobaEntradaTextBox.TabIndex = 0;
             this.arrobaEntradaTextBox.Leave += new System.EventHandler(this.arrobaEntradaTextBoxLeave);
             // 
@@ -53,7 +53,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.arrobaSaidaTextBox.Location = new System.Drawing.Point(152, 45);
             this.arrobaSaidaTextBox.Name = "arrobaSaidaTextBox";
-            this.arrobaSaidaTextBox.Size = new System.Drawing.Size(120, 20);
+            this.arrobaSaidaTextBox.Size = new System.Drawing.Size(149, 20);
             this.arrobaSaidaTextBox.TabIndex = 1;
             this.arrobaSaidaTextBox.Leave += new System.EventHandler(this.arrobaSaidaTextBoxLeave);
             // 
@@ -75,16 +75,16 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Valor do arroba de saida";
             // 
-            // richTextBox1
+            // detalhesRichTextBox
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.detalhesRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(16, 112);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(256, 137);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.detalhesRichTextBox.Location = new System.Drawing.Point(16, 112);
+            this.detalhesRichTextBox.Name = "detalhesRichTextBox";
+            this.detalhesRichTextBox.Size = new System.Drawing.Size(285, 199);
+            this.detalhesRichTextBox.TabIndex = 4;
+            this.detalhesRichTextBox.Text = "";
             // 
             // totalGasto
             // 
@@ -108,10 +108,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(313, 323);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.totalGasto);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.detalhesRichTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.arrobaSaidaTextBox);
@@ -129,7 +129,7 @@
         private System.Windows.Forms.TextBox arrobaSaidaTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox detalhesRichTextBox;
         private System.Windows.Forms.Label totalGasto;
         private System.Windows.Forms.Label label3;
     }

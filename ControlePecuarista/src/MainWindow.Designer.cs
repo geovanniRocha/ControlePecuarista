@@ -199,7 +199,7 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
-            this.openFileDialog.Filter = "Controle Pecuarista(*.cdp)|*";
+            this.openFileDialog.Filter = "Controle Pecuarista (*.cdp)|*.cdp|Todos os arquivos (*.*)|*.*";
             this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.loadFileOk);
             // 
             // MainWindow

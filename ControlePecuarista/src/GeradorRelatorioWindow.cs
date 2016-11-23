@@ -19,7 +19,12 @@ namespace ControlePecuarista.src
         public GeradorRelatorioWindow()
         {
             InitializeComponent();
-            a = new HTMLBuilder();
+            a=new HTMLBuilder();
+            //TODO V2-> Inserir um table sorter em Gastos.
+            //TODO V2-> Gerar toda a documentacao em varios HTMLS (Index.html, gastos.html)
+            //TODO V2-> Incluindo JavaScript, JQuery, Bootstrap, Cada um em um tipo de pasta(JS, CSS)
+            //TODO V2-> Gerar um menu lateral para facil acesso a funcoes;
+
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -36,7 +41,7 @@ namespace ControlePecuarista.src
             TipoPastagemDAO tipoPastagemDao = new DataPersistent.TipoPastagemDAO(path);
             GastosDAO gastosDao = new DataPersistent.GastosDAO(path);
             UnidadeAnimalDAO unidadeAnimalDao = new DataPersistent.UnidadeAnimalDAO(path);
-
+            Misc miscDao = new Misc(path);
 
 
 
@@ -93,12 +98,14 @@ namespace ControlePecuarista.src
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
+             a = new HTMLBuilder();
             gerador();
             System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
             string toWrite = a.toHTML();
             fs.Write(System.Text.Encoding.UTF8.GetBytes(toWrite), 0, toWrite.Length);
             fs.Close();
             MessageBox.Show(this, "Relatorio gerado com sucesso.");
+            Dispose();
         }
     }
 }

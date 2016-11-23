@@ -3,42 +3,53 @@ using DataPersistent;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using ControlePecuarista;
 
 namespace GeradorRelatorio
 {
-    public class HTMLBuilder {
+    public class HTMLBuilder
+    {
         private readonly StringBuilder html;
+        private Misc miscDao;
 
-        public HTMLBuilder() {
+        public HTMLBuilder()
+        {
             html = new StringBuilder();
+            miscDao = new Misc(MainWindow.currentPath);
         }
 
-        public void breakLine() {
+        public void breakLine()
+        {
             html.Append("<br>");
         }
 
-        public void addButton(string nome) {
+        public void addButton(string nome)
+        {
             html.Append(@"<a class='pure-button color-energized' href='#" + nome + "'>" + nome + "</a>");
         }
 
         [Obsolete("use another initDiv", true)]
-        public void initDiv(string divname) {
+        public void initDiv(string divname)
+        {
             html.Append(@"<div class = 'separator'id='" + divname + "'>");
         }
 
-        public void initDiv(string divname, string classname) {
+        public void initDiv(string divname, string classname)
+        {
             html.Append($"<div class = '{classname}'id='{divname}'>");
         }
 
-        public void endDiv() {
+        public void endDiv()
+        {
             html.Append("</div>");
         }
 
-        public void addMaquinariosTable(List<Maquinario> data) {
+        public void addMaquinariosTable(List<Maquinario> data)
+        {
             html.Append(@"<table  class='pure-table pure-table-bordered '>");
             html.Append("<thead>");
 
-            html.Append($"<th>ID</th>");
+            //html.Append($"<th>ID</th>");
             html.Append($"<th>Nome</th>");
             html.Append($"<th>Descricao</th>");
 
@@ -48,7 +59,7 @@ namespace GeradorRelatorio
             foreach (var me in data)
             {
                 html.Append("<tr>");
-                html.Append($"<td>{me.id}</td>");
+                //html.Append($"<td>{me.id}</td>");
                 html.Append($"<td>{me.nome}</td>");
                 html.Append($"<td>{me.descricao}</td>");
                 html.Append("</tr>");
@@ -58,11 +69,13 @@ namespace GeradorRelatorio
             html.Append(@"</table>");
         }
 
-        public string toHTML() {
+        public string toHTML()
+        {
             return html.ToString();
         }
 
-        public void css() {
+        public void css()
+        {
 #if DEBUG
 
             using (StreamReader sr = new StreamReader(@"D:/css.txt"))
@@ -78,14 +91,15 @@ namespace GeradorRelatorio
 #endif
         }
 
-        public void addPastagemTable(List<Pastagem> data) {
+        public void addPastagemTable(List<Pastagem> data)
+        {
             html.Append(@"<table  class='pure-table pure-table-bordered '>");
             html.Append("<thead>");
 
-            html.Append($"<th>ID</th>");
+            //html.Append($"<th>ID</th>");
             html.Append($"<th>Nome</th>");
             html.Append($"<th>Área Util</th>");
-            html.Append($"<th>ID Pastagem</th>");
+            html.Append($"<th>Tipo de Pastagem</th>");
 
             html.Append("</thead>");
 
@@ -93,10 +107,10 @@ namespace GeradorRelatorio
             foreach (var me in data)
             {
                 html.Append("<tr>");
-                html.Append($"<td>{me.id}</td>");
+                //html.Append($"<td>{me.id}</td>");
                 html.Append($"<td>{me.nome}</td>");
                 html.Append($"<td>{me.areaUtil}</td>");
-                html.Append($"<td>{me.tipoPastagemID}</td>");
+                html.Append($"<td>{me.tipoPastagemNome}</td>");
                 html.Append("</tr>");
             }
             html.Append("</tbody>");
@@ -104,11 +118,12 @@ namespace GeradorRelatorio
             html.Append(@"</table>");
         }
 
-        public void addGastosTable(List<Gastos> data) {
+        public void addGastosTable(List<Gastos> data)
+        {
             html.Append(@"<table  class='pure-table pure-table-bordered '>");
             html.Append("<thead>");
 
-            html.Append($"<th>ID</th>");
+            //html.Append($"<th>ID</th>");
             html.Append($"<th>Nome</th>");
             html.Append($"<th>Descricao</th>");
             html.Append($"<th>ID Pastagem</th>");
@@ -118,15 +133,39 @@ namespace GeradorRelatorio
             html.Append("</thead>");
 
             html.Append("<tbody>");
+
+
+
             foreach (var me in data)
             {
+
+                string tempNome = "";
+                switch (me.idCategoria)
+                {
+                    case GastosType.Combustivel:
+                        tempNome = miscDao.selectNomeByidRefFromGastos(me.idRef, "combustivel");
+                        break;
+                    case GastosType.Maquinario:
+                        tempNome = miscDao.selectNomeByidRefFromGastos(me.idRef, "maquinario");
+                        break;
+                    case GastosType.Outros:
+                        tempNome = "Outros";
+                        break;
+                    case GastosType.Pastagem:
+                        tempNome = miscDao.selectNomeByidRefFromGastos(me.idRef, "pastagem");
+                        break;
+                    case GastosType.UnidadeAnimal:
+                        tempNome = miscDao.selectNomeByidRefFromGastos(me.idRef, "unidadeAnimal");
+                        break;
+                }
                 html.Append("<tr>");
 
-                html.Append($"<td>{me.id}</td>");
+                //html.Append($"<td>{me.id}</td>");
                 html.Append($"<td>{me.nome}</td>");
                 html.Append($"<td>{me.descricao}</td>");
-                html.Append($"<td>{me.idCategoria}</td>");
-                html.Append($"<td>{me.idRef}</td>");
+                html.Append($"<td>{((GastosType)me.idCategoria).ToString()}</td>");
+                //html.Append($"<td>{me.idRef}+{temp}</td>");
+                html.Append($"<td>{tempNome}</td>");
                 html.Append($"<td>{me.valor}</td>");
 
                 html.Append("</tr>");
@@ -136,11 +175,12 @@ namespace GeradorRelatorio
             html.Append(@"</table>");
         }
 
-        public void addUnidadeAnimalTable(List<UnidadeAnimal> data) {
+        public void addUnidadeAnimalTable(List<UnidadeAnimal> data)
+        {
             html.Append(@"<table  class='pure-table pure-table-bordered '>");
             html.Append("<thead>");
 
-            html.Append($"<th>ID</th>");
+            //html.Append($"<th>ID</th>");
             html.Append($"<th>Nome</th>");
             html.Append($"<th>Raca</th>");
             html.Append($"<th>UA Entrada</th>");
@@ -158,7 +198,7 @@ namespace GeradorRelatorio
             {
                 html.Append("<tr>");
 
-                html.Append($"<td>{me.id}</td>");
+                //html.Append($"<td>{me.id}</td>");
                 html.Append($"<td>{me.nome}</td>");
                 html.Append($"<td>{me.raca}</td>");
                 html.Append($"<td>{me.uaEntrada}</td>");
@@ -176,7 +216,8 @@ namespace GeradorRelatorio
         }
 
 
-        public void clear() {
+        public void clear()
+        {
             html.Clear();
         }
     }

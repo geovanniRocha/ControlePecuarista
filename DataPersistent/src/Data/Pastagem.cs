@@ -61,7 +61,7 @@ namespace DataPersistent
 
         public override List<Pastagem> selectEverything() {
             var tempList = new List<Pastagem>();
-            string sql = $"select id, nome,areautil, IDTipoPastagem from pastagem;";
+            string sql = $"select p.id, p.nome,p.areautil, p.IDTipoPastagem, tp.Nome from pastagem p  inner join tipoPastagem tp on p.IDTipoPastagem = tp.id-1;";
             Maquinario temp = null;
             using (var c = new SQLiteConnection(connection))
             {
@@ -72,7 +72,7 @@ namespace DataPersistent
                     {
                         while (reader.Read())
                         {
-                            tempList.Add(new Pastagem(reader.GetInt32(0), reader.GetString(1), reader.GetFloat(2), reader.GetInt32(3)));
+                            tempList.Add(new Pastagem(reader.GetInt32(0), reader.GetString(1), reader.GetFloat(2), reader.GetInt32(3), reader.GetString(4)));
                         }
                     }
                 }
@@ -94,6 +94,13 @@ namespace DataPersistent
             this.areaUtil = areaUtil;
             tipoPastagemID = tipoPastagemId;
         }
+        public Pastagem(int id, string nome, float areaUtil, int tipoPastagemId, string tipoPastagemNome) {
+            this.id = id;
+            this.nome = nome;
+            this.areaUtil = areaUtil;
+            tipoPastagemID = tipoPastagemId;
+            this.tipoPastagemNome = tipoPastagemNome;
+        }
 
         public Pastagem(string nome, float areaUtil, int tipoPastagemId) {
             this.nome = nome;
@@ -105,5 +112,6 @@ namespace DataPersistent
         public string nome { get; set; }
         public float areaUtil { get; set; }
         public int tipoPastagemID { get; set; }
+        public string tipoPastagemNome { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Windows.Forms;
 
 namespace DataPersistent
 {
@@ -29,14 +30,19 @@ namespace DataPersistent
                     c.Open();
                     using (var cmd = new SQLiteCommand(sql, c))
                     {
-                      cmd.ExecuteNonQuery();
+#if DEBUG
+                        DebugDLL.Debug.debug(sql); 
+#endif
+                        cmd.ExecuteNonQuery();
                     }
                 }
                 catch (Exception e)
                 {
 
-                    DebugDLL.Debug.error("Exception: " + e.Message+  " at: "+ e.Source + " Stack Trace :" + e.StackTrace);
-                    DebugDLL.Debug.warning("Sql : " + sql);    
+#if DEBUG
+                    DebugDLL.Debug.error("Exception: " + e.Message + " at: " + e.Source + " Stack Trace :" + e.StackTrace);
+                    DebugDLL.Debug.warning("Sql : " + sql);     
+#endif
                 }
         }
         }

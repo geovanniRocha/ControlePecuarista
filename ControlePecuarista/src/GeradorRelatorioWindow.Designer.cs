@@ -99,9 +99,9 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(161, 214);
+            this.button1.Location = new System.Drawing.Point(229, 274);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 7;
             this.button1.Text = "Gerar Relatorio";
             this.button1.UseVisualStyleBackColor = true;
@@ -109,20 +109,21 @@
             // 
             // saveFileDialog1
             // 
+            this.saveFileDialog1.Filter = "HTML (*.html)|*.html|Todos os arquivos (*.*)|*.*";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // GeradorRelatorioWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 249);
+            this.ClientSize = new System.Drawing.Size(339, 309);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pastagemCheckBox);
             this.Controls.Add(this.UAcheckBox);
             this.Controls.Add(this.maquinariosCheckBox);
             this.Controls.Add(this.gastoCheckBox);
             this.Controls.Add(this.label1);
-            this.Name = "GeradorRelatorio";
+            this.Name = "GeradorRelatorioWindow";
             this.Text = "GeradorRelatorioWindow";
             this.ResumeLayout(false);
             this.PerformLayout();

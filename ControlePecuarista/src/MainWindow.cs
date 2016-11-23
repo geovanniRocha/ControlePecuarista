@@ -148,7 +148,11 @@ namespace ControlePecuarista
             splitContainer3.Panel2.Controls.Clear();
 
             if (e.Node.Parent == null)
-                DebugDLL.Debug.debug(e.Node.Text);
+            {
+#if DEBUG
+                DebugDLL.Debug.debug(e.Node.Text); 
+#endif
+            }
 
             if (e.Node.Parent != null)
                 switch (e.Node.Parent.Text)
